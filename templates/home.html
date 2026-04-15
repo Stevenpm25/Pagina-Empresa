@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campin 24/7 - Oportunidades</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy2: #112031;
+      --red: #c0392b;
+      --red2: #e74c3c;
+      --gold: #f0c040;
+      --white: #ffffff;
+      --light: #ecf0f1;
+      --gray: #7f8c8d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* NAVBAR */
+    nav { background: var(--navy); border-bottom: 3px solid var(--red); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,.6); }
+    .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 12px 40px; }
+    .logo-area { display: flex; align-items: center; gap: 14px; }
+    .logo-badge { width: 58px; height: 58px; background: linear-gradient(135deg, var(--navy2), #1a2e42); border: 2.5px solid var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); }
+    .logo-text .top { font-size: 11px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
+    .logo-text .bottom { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 24px; text-transform: uppercase; }
+    .wa-btn { display: flex; align-items: center; gap: 10px; background: #25d366; color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 22px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+    .wa-btn:hover { background: #1ebe5d; }
+    .wa-btn i { font-size: 20px; }
+    .wa-info { display: flex; flex-direction: column; line-height: 1.2; }
+    .wa-label { font-size: 9px; opacity: .85; }
+    .nav-links { background: var(--red); display: flex; list-style: none; padding: 0 40px; }
+    .nav-links a { display: block; padding: 11px 20px; color: var(--white); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; transition: background .2s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(0,0,0,.25); }
+
+    /* HERO */
+    .hero { position: relative; height: 480px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: linear-gradient(135deg, rgba(13,27,42,.9) 40%, rgba(192,57,43,.25) 100%), url('https://images.unsplash.com/photo-1593640408182-31c228a7ac13?w=1600&q=80') center/cover no-repeat; }
+    .hero-content { text-align: center; z-index: 2; }
+    .hero-eyebrow { font-size: 13px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 9vw, 110px); line-height: .92; background: linear-gradient(90deg, #fff 60%, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { margin-top: 18px; font-size: 16px; color: var(--light); opacity: .9; }
+    .hero-pills { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .pill { background: var(--red); color: #fff; padding: 8px 22px; border-radius: 30px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background .2s; }
+    .pill:hover { background: var(--red2); }
+    .pill-outline { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+    .pill-outline:hover { background: var(--gold); color: var(--navy); }
+
+    /* FLASH BAR */
+    .flash-bar { background: linear-gradient(90deg, #1a7a36, #25d366, #1a7a36); padding: 10px 40px; display: flex; align-items: center; justify-content: center; gap: 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* CATEGORIES STACKED */
+    .categories { display: flex; flex-direction: column; }
+
+    .cat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+    }
+    .cat-row.reverse { direction: rtl; }
+    .cat-row.reverse > * { direction: ltr; }
+
+    .cat-media {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+    .cat-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
+    }
+    .cat-row:hover .cat-media img { transform: scale(1.05); }
+    .cat-media video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cat-media-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,20,35,.3), rgba(192,57,43,.15));
+      pointer-events: none;
+    }
+
+    .cat-content {
+      background: var(--navy2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-content::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: var(--red);
+      opacity: .04;
+      border-radius: 50%;
+    }
+
+    .cat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      color: rgba(255,255,255,.04);
+      line-height: 1;
+      position: absolute;
+      top: 20px; right: 30px;
+    }
+    .cat-icon-box {
+      width: 56px; height: 56px;
+      background: var(--red);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(192,57,43,.4);
+      transition: transform .3s;
+    }
+    .cat-row:hover .cat-icon-box { transform: scale(1.1) rotate(-3deg); }
+    .cat-label {
+      font-size: 11px; letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .cat-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(32px, 4vw, 52px);
+      text-transform: uppercase;
+      line-height: 1.0;
+      margin-bottom: 14px;
+    }
+    .cat-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,.75);
+      line-height: 1.7;
+      margin-bottom: 30px;
+      max-width: 380px;
+    }
+    .cat-divider {
+      width: 48px; height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .cat-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white); color: var(--navy);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, color .2s, transform .2s;
+      width: fit-content;
+    }
+    .cat-cta:hover { background: var(--gold); color: var(--navy); transform: translateX(6px); }
+    .cat-cta.red { background: var(--red); color: #fff; }
+    .cat-cta.red:hover { background: var(--red2); transform: translateX(6px); }
+    .cat-cta i { font-size: 16px; }
+
+    /* row accent colors */
+    .cat-row:nth-child(2) .cat-content { background: #0f1e2d; }
+    .cat-row:nth-child(3) .cat-content { background: #111f30; }
+    .cat-row:nth-child(4) .cat-content { background: #0d1c2b; }
+
+    /* SELL CTA */
+    .sell-section { background: linear-gradient(135deg, #0d1b2a 50%, #1a0a0a 100%); padding: 80px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; border-top: 3px solid var(--red); }
+    .sell-left h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 72px); line-height: 1; }
+    .sell-left h2 span { color: var(--gold); }
+    .sell-left p { font-size: 16px; color: rgba(255,255,255,.75); margin-top: 12px; max-width: 500px; line-height: 1.7; }
+    .sell-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+    .sell-btn-main { background: var(--red); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; padding: 18px 44px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 12px; transition: background .2s, transform .2s; box-shadow: 0 6px 24px rgba(192,57,43,.4); }
+    .sell-btn-main:hover { background: var(--red2); transform: translateY(-2px); }
+    .sell-note { font-size: 12px; color: var(--gray); letter-spacing: 1px; }
+
+    /* REVIEWS */
+    .reviews-section { padding: 80px 40px; background: var(--navy2); }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-eyebrow { font-size: 12px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); }
+    .section-sub { font-size: 15px; color: rgba(255,255,255,.65); margin-top: 8px; }
+    .stars-big { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
+    .stars-big i { color: var(--gold); font-size: 28px; }
+    .rating-number { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--gold); line-height: 1; }
+    .rating-count { font-size: 13px; color: var(--gray); margin-top: 4px; }
+    .review-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 50px; }
+    .review-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 12px; padding: 24px; transition: border-color .3s, transform .3s; }
+    .review-card:hover { border-color: var(--red); transform: translateY(-4px); }
+    .rc-stars { display: flex; gap: 4px; margin-bottom: 12px; }
+    .rc-stars i { color: var(--gold); font-size: 14px; }
+    .rc-text { font-size: 14px; color: rgba(255,255,255,.78); line-height: 1.6; margin-bottom: 16px; }
+    .rc-author { display: flex; align-items: center; gap: 10px; }
+    .rc-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--red), #6b1010); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+    .rc-name { font-weight: 600; font-size: 14px; }
+    .rc-date { font-size: 11px; color: var(--gray); }
+    .review-form { max-width: 640px; margin: 40px auto 0; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 36px; }
+    .review-form h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+    .star-picker { display: flex; gap: 8px; margin-bottom: 20px; }
+    .star-picker i { font-size: 32px; color: rgba(255,255,255,.2); cursor: pointer; transition: color .2s, transform .15s; }
+    .star-picker i.active { color: var(--gold); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; margin-bottom: 8px; }
+    .form-group input, .form-group textarea { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 15px; padding: 12px 16px; outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .submit-btn { background: var(--red); color: #fff; border: none; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border-radius: 8px; transition: background .2s; display: flex; align-items: center; gap: 10px; }
+    .submit-btn:hover { background: var(--red2); }
+
+    /* FOOTER */
+    footer { background: #070f18; border-top: 3px solid var(--red); padding: 60px 40px 30px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 50px; margin-bottom: 50px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.7; margin-top: 14px; }
+    .footer-trust { margin-top: 18px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; color: var(--red); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,.65); text-decoration: none; font-size: 14px; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-contact { display: flex; flex-direction: column; gap: 12px; }
+    .fc-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: rgba(255,255,255,.7); }
+    .fc-item i { color: var(--red); font-size: 16px; margin-top: 2px; min-width: 18px; }
+    .socials { display: flex; gap: 12px; margin-top: 20px; }
+    .social-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 16px; text-decoration: none; transition: background .2s, transform .2s; }
+    .social-icon:hover { background: var(--red); transform: translateY(-2px); }
+    .map-embed { border-radius: 10px; overflow: hidden; border: 2px solid rgba(255,255,255,.08); margin-top: 16px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: var(--gray); }
+    .footer-bottom span { color: var(--red); }
+    .footer-badges { display: flex; gap: 12px; align-items: center; }
+    .badge { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 5px 12px; font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: 1px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-top { padding: 12px 20px; }
+      .nav-links { padding: 0 10px; }
+      .nav-links a { padding: 10px 12px; font-size: 12px; }
+      .cat-row { grid-template-columns: 1fr; }
+      .cat-row.reverse { direction: ltr; }
+      .cat-media { min-height: 280px; }
+      .cat-content { padding: 40px 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .sell-section { flex-direction: column; padding: 50px 30px; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero { height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-top">
+    <div class="logo-area">
+      <div class="logo-badge">PC</div>
+      <div class="logo-text">
+        <div class="top">Oportunidades</div>
+        <div class="bottom">Campin 24/7</div>
+      </div>
+    </div>
+    <a href="https://wa.me/573000000000" target="_blank" class="wa-btn">
+      <i class="fab fa-whatsapp"></i>
+      <div class="wa-info">
+        <span class="wa-label">Contactar por WhatsApp</span>
+        <span>+57 · BOGOTA</span>
+      </div>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Inicio</a></li>
+    <li><a href="/camaras">Cámaras</a></li>
+    <li><a href="/deportivo">Deportivo</a></li>
+    <li><a href="#">Tecnología</a></li>
+    <li><a href="#">Compra y Venta</a></li>
+    <li><a href="#">Quienes Somos</a></li>
+    <li><a href="#">WhatsApp</a></li>
+    <li><a href="#">Ubicacion</a></li>
+    <li><a href="#">FAQ</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">7 anos de confianza - Bogota, Colombia</div>
+    <div class="hero-title">Campin 24/7</div>
+    <p class="hero-sub">Tecnologia - GoPro - Deportivo - Compra y Venta</p>
+    <div class="hero-pills">
+      <a href="#categorias" class="pill">Ver categorias</a>
+      <a href="#vender" class="pill pill-outline">Vender algo</a>
+    </div>
+  </div>
+</section>
+
+<!-- FLASH BAR -->
+<div class="flash-bar">
+  <i class="fas fa-bolt"></i>
+  Entrega rapida en el mismo dia - Contra entrega - Bogota
+  <i class="fas fa-bolt"></i>
+</div>
+
+<!-- CATEGORIES STACKED -->
+<section class="categories" id="categorias">
+
+  <!-- 1. Tecnologia - foto izquierda -->
+  <div class="cat-row">
+    <div class="cat-media">
+      <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=900&q=80" alt="Tecnologia"/>
+      <div class="cat-media-overlay"></div>
+    </div>
+    <div class="cat-content">
+      <span class="cat-number">01</span>
+      <div class="cat-icon-box"><i class="fas fa-microchip"></i></div>
+      <div class="cat-label">Categoria 01</div>
+      <h2 class="cat-title">Tecnologia y Electronica</h2>
+      <div class="cat-divider"></div>
+      <p class="cat-desc">Componentes, moviles y accesorios de elite. Computadores, celulares, tablets y todo lo que necesitas al mejor precio en Bogota.</p>
+      <a href="#" class="cat-cta"><i class="fas fa-arrow-right"></i> Explorar categoria</a>
+    </div>
+  </div>
+
+  <!-- 2. GoPro - texto izquierda, video derecha -->
+  <div class="cat-row reverse">
+    <div class="cat-media">
+      <video autoplay muted loop playsinline>
+        <source src="/static/videos/gopro1.mp4" type="video/mp4"/>
+      </video>
+      <div class="cat-media-overlay"></div>
+    </div>
+    <div class="cat-content">
+      <span class="cat-number">02</span>
+      <div class="cat-icon-box"><i class="fas fa-camera"></i></div>
+      <div class="cat-label">Categoria 02</div>
+      <h2 class="cat-title">GoPro y Camaras</h2>
+      <div class="cat-divider"></div>
+      <p class="cat-desc">Captura tus aventuras como nunca antes. GoPro Hero, drones, accesorios de accion y todo para llevar tus recuerdos al siguiente nivel.</p>
+      <a href="#" class="cat-cta"><i class="fas fa-arrow-right"></i> Ver mas</a>
+    </div>
+  </div>
+
+  <!-- 3. Remate - foto izquierda -->
+  <div class="cat-row">
+    <div class="cat-media">
+      <img src="C:\Users\steve\OneDrive\Documentos\PaginaWeb\static\image\deportivo\deportivo_extra_101.jpg" alt="Deportivo"/>  
+      <div class="cat-media-overlay"></div>
+    </div>
+    <div class="cat-content">
+      <span class="cat-number">03</span>
+      <div class="cat-icon-box"><i class="fas fa-fire"></i></div>
+      <div class="cat-label">Categoria 03</div>
+      <h2 class="cat-title">Deportivo</h2>
+      <div class="cat-divider"></div>
+      <p class="cat-desc">Ofertas unicas por tiempo limitado. Equipos, gadgets y accesorios con descuentos reales que no encontraras en ninguna otra parte.</p>
+      <a href="#" class="cat-cta red"><i class="fas fa-bolt"></i> Ver ofertas</a>
+    </div>
+  </div>
+
+  <!-- 4. Venta - texto izquierda -->
+  <div class="cat-row reverse">
+    <div class="cat-media">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80" alt="Venta"/>
+      <div class="cat-media-overlay"></div>
+    </div>
+    <div class="cat-content">
+      <span class="cat-number">04</span>
+      <div class="cat-icon-box"><i class="fas fa-handshake"></i></div>
+      <div class="cat-label">Categoria 04</div>
+      <h2 class="cat-title">Compra y Venta</h2>
+      <div class="cat-divider"></div>
+      <p class="cat-desc">Tienes algo para nosotros? Compramos y vendemos rapido y seguro. Llevamos 7 anos siendo el punto de confianza en Bogota.</p>
+      <a href="#vender" class="cat-cta red"><i class="fas fa-comments"></i> Contactar</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- SELL CTA -->
+<section class="sell-section" id="vender">
+  <div class="sell-left">
+    <h2>Tienes algo<br><span>para nosotros?</span></h2>
+    <p>Compra, vende o intercambia con confianza. Llevamos 7 anos siendo el punto de referencia en Bogota para transacciones seguras y rapidas.</p>
+  </div>
+  <div class="sell-right">
+    <a href="https://wa.me/573000000000" target="_blank" class="sell-btn-main">
+      <i class="fab fa-whatsapp"></i> Hablar con nosotros
+    </a>
+    <span class="sell-note"><i class="fas fa-shield-alt"></i> Compras seguras - 7 anos de confianza</span>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="resenas">
+  <div class="section-header">
+    <div class="section-eyebrow">Lo que dicen de nosotros</div>
+    <h2 class="section-title">Resenas y Calificaciones</h2>
+    <p class="section-sub">Miles de clientes satisfechos en Bogota y todo Colombia</p>
+    <div style="margin-top:20px;">
+      <div class="rating-number">4.9</div>
+      <div class="stars-big">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+      </div>
+      <div class="rating-count">Basado en 312 resenas verificadas</div>
+    </div>
+  </div>
+
+  <div class="review-cards">
+    <div class="review-card">
+      <div class="rc-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="rc-text">"Compre una GoPro Hero 12 y llego en el mismo dia. Excelente servicio y el precio no lo encontre igual en ningun lado."</p>
+      <div class="rc-author">
+        <div class="rc-avatar">JM</div>
+        <div><div class="rc-name">Juan Morales</div><div class="rc-date">Hace 3 dias - Bogota</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="rc-text">"Vendi mi laptop en menos de 24 horas. Proceso muy facil y el pago fue inmediato. 100% recomendados."</p>
+      <div class="rc-author">
+        <div class="rc-avatar" style="background:linear-gradient(135deg,#1a7a36,#0d4020)">LC</div>
+        <div><div class="rc-name">Laura Castro</div><div class="rc-date">Hace 1 semana - Bogota</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+      <p class="rc-text">"Encontre un remate de celulares a precios increibles. La atencion por WhatsApp fue rapidisima. Ya soy cliente fijo."</p>
+      <div class="rc-author">
+        <div class="rc-avatar" style="background:linear-gradient(135deg,#1a3a7a,#0d1a40)">CR</div>
+        <div><div class="rc-name">Carlos Ruiz</div><div class="rc-date">Hace 2 semanas - Bogota</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="review-form">
+    <h3><i class="fas fa-pen-nib" style="color:#c0392b;margin-right:10px;"></i>Deja tu comentario</h3>
+    <div style="margin-bottom:16px;">
+      <label style="display:block;font-size:12px;letter-spacing:2px;color:#7f8c8d;text-transform:uppercase;margin-bottom:10px;">Tu calificacion</label>
+      <div class="star-picker" id="starPicker">
+        <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" placeholder="Ej. Maria Lopez"/>
+    </div>
+    <div class="form-group">
+      <label>Tu comentario</label>
+      <textarea placeholder="Cuentanos tu experiencia con Campin 24/7..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="submitReview(this)">
+      <i class="fas fa-paper-plane"></i> Enviar resena
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand footer-col">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="logo-badge" style="width:50px;height:50px;font-size:18px;">PC</div>
+        <div>
+          <div style="font-size:10px;color:#f0c040;letter-spacing:3px;text-transform:uppercase;">Oportunidades</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;">Campin 24/7</div>
+        </div>
+      </div>
+      <p>Tu destino de confianza para tecnologia, GoPro, remates y compraventa en Bogota. 7 anos conectando oportunidades.</p>
+      <div class="footer-trust"><i class="fas fa-shield-alt"></i> 7 anos de confianza - Compras seguras</div>
+      <div class="socials">
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Categorias</h4>
+      <ul>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">GoPro y Camaras</a></li>
+        <li><a href="#">Deportivo</a></li>
+        <li><a href="#">Compra y Venta</a></li>
+        <li><a href="#">Ofertas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Informacion</h4>
+      <ul>
+        <li><a href="#">Quienes somos</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Garantias</a></li>
+        <li><a href="#">Privacidad</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-contact">
+        <div class="fc-item"><i class="fas fa-phone"></i><span>+57 537 523 0550</span></div>
+        <div class="fc-item"><i class="fas fa-envelope"></i><span>oportunidades@puntoclave.co</span></div>
+        <div class="fc-item"><i class="fab fa-whatsapp"></i><span>WhatsApp directo - Bogota</span></div>
+        <div class="fc-item"><i class="fas fa-map-marker-alt"></i><span>Pie del Campin, Bogota D.C., Colombia</span></div>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6!2d-74.082!3d4.657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMjUuMiJOIDc0wrAwNSc1NS4yIlc!5e0!3m2!1ses!2sco!4v1234567890" width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>2025 <span>Campin 24/7</span>. Todos los derechos reservados.</p>
+    <div class="footer-badges">
+      <span class="badge">Seguro</span>
+      <span class="badge">Rapido</span>
+      <span class="badge">7 Anos</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var stars = document.querySelectorAll('#starPicker i');
+  var currentRating = 0;
+  stars.forEach(function(star, i) {
+    star.addEventListener('mouseenter', function() { highlightStars(i + 1); });
+    star.addEventListener('mouseleave', function() { highlightStars(currentRating); });
+    star.addEventListener('click', function() { currentRating = i + 1; highlightStars(currentRating); });
+  });
+  function highlightStars(n) {
+    stars.forEach(function(s, i) {
+      s.className = i < n ? 'fas fa-star active' : 'far fa-star';
+    });
+  }
+  function submitReview(btn) {
+    if (!currentRating) { alert('Por favor selecciona una calificacion'); return; }
+    btn.innerHTML = '<i class="fas fa-check"></i> Gracias por tu resena!';
+    btn.style.background = '#1a7a36';
+    btn.disabled = true;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)'; }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.review-card, .cat-row').forEach(function(el) {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .7s ease, transform .7s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

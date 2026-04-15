@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalogo GoPro - Punto Clave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{--navy:#0d1b2a;--navy2:#112031;--red:#c0392b;--red2:#e74c3c;--gold:#f0c040;--white:#fff;--gray:#7f8c8d;--card:#0f1d2c;--blue:#1a4a8a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+
+    /* NAV */
+    nav{background:var(--navy);border-bottom:3px solid var(--red);position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.6)}
+    .nav-top{display:flex;align-items:center;justify-content:space-between;padding:10px 40px}
+    .logo-area{display:flex;align-items:center;gap:12px}
+    .logo-badge{width:50px;height:50px;background:linear-gradient(135deg,var(--navy2),#1a2e42);border:2px solid var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:20px;color:var(--gold)}
+    .logo-text .top{font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+    .logo-text .bottom{font-family:'Barlow Condensed';font-weight:900;font-size:20px;text-transform:uppercase}
+    .wa-btn{display:flex;align-items:center;gap:8px;background:#25d366;color:#fff;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border-radius:8px;text-decoration:none;transition:background .2s}
+    .wa-btn:hover{background:#1ebe5d}
+    .nav-links{background:var(--red);display:flex;list-style:none;padding:0 40px}
+    .nav-links a{display:block;padding:10px 16px;color:#fff;text-decoration:none;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:background .2s}
+    .nav-links a:hover,.nav-links a.active{background:rgba(0,0,0,.25)}
+
+    /* HERO */
+    .page-hero{background:linear-gradient(135deg,rgba(10,20,35,.96) 45%,rgba(0,40,90,.5) 100%),url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1600&q=80') center/cover;padding:56px 40px;text-align:center}
+    .hero-tag{font-size:11px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+    .hero-title{font-family:'Bebas Neue';font-size:clamp(52px,9vw,100px);line-height:.9;background:linear-gradient(90deg,#fff 55%,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{margin-top:12px;font-size:15px;color:rgba(255,255,255,.72)}
+    .hero-stats{display:flex;gap:30px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+    .stat{text-align:center}
+    .stat-num{font-family:'Bebas Neue';font-size:32px;color:var(--gold)}
+    .stat-lbl{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase}
+
+    /* FILTERS */
+    .filter-bar{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,.06);padding:16px 40px;position:sticky;top:78px;z-index:900}
+    .filter-inner{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .filter-label{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-right:4px;white-space:nowrap}
+    .filt-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:20px;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .filt-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+    .filt-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+    .search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:7px 14px}
+    .search-wrap input{background:none;border:none;outline:none;color:#fff;font-family:'Barlow';font-size:13px;width:160px}
+    .search-wrap input::placeholder{color:rgba(255,255,255,.3)}
+    .search-wrap i{color:var(--gray);font-size:13px}
+
+    /* WRAP */
+    .catalog-wrap{padding:36px 40px;max-width:1600px;margin:0 auto}
+
+    /* SECTION HEADER */
+    .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .sec-head:first-child{margin-top:0}
+    .sec-icon{width:42px;height:42px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+    .sec-info .sec-name{font-family:'Barlow Condensed';font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.5px}
+    .sec-info .sec-sub{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:2px;text-transform:uppercase;margin-top:1px}
+    .sec-count{margin-left:auto;font-family:'Bebas Neue';font-size:22px;color:rgba(255,255,255,.15)}
+
+    /* GRID */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+
+    /* CARD */
+    .prod-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .22s,border-color .22s,box-shadow .22s;position:relative;display:flex;flex-direction:column}
+    .prod-card:hover{transform:translateY(-5px);border-color:rgba(192,57,43,.6);box-shadow:0 14px 40px rgba(0,0,0,.5)}
+    /* Image gallery */
+    .card-gallery{position:relative;height:190px;overflow:hidden;background:#0a1620}
+    .card-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+    .card-gallery img.active{opacity:1}
+    .gallery-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2}
+    .gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s,transform .2s}
+    .gallery-dot.active{background:var(--gold);transform:scale(1.3)}
+    .card-badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-family:'Barlow Condensed';font-weight:800;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:4px;z-index:3}
+    .card-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px}
+    .card-cat{font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+    .card-name{font-family:'Barlow Condensed';font-weight:800;font-size:15px;text-transform:uppercase;line-height:1.15;color:#fff}
+    .card-short{font-size:12px;color:rgba(255,255,255,.5);line-height:1.4;margin-top:2px}
+    .card-prices{display:flex;gap:12px;align-items:baseline;margin-top:auto;padding-top:8px}
+    .price-new-sm{font-family:'Bebas Neue';font-size:22px;color:var(--gold)}
+    .price-new-lbl{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase}
+    .price-used-sm{font-family:'Bebas Neue';font-size:17px;color:rgba(255,255,255,.4)}
+    .card-footer{padding:0 14px 14px;display:flex;gap:8px}
+    .btn-wa-sm{flex:1;background:#25d366;color:#fff;border:none;padding:9px;border-radius:7px;font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s}
+    .btn-wa-sm:hover{background:#1ebe5d}
+    .btn-expand{width:34px;height:34px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.5);transition:all .2s;flex-shrink:0}
+    .btn-expand:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+    /* MODAL */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:20px}
+    .modal-overlay.open{display:flex}
+    .modal{background:#0f1e2e;border:1px solid rgba(255,255,255,.1);border-radius:16px;max-width:860px;width:100%;max-height:92vh;overflow-y:auto;position:relative;animation:modalIn .25s ease}
+    @keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;background:rgba(255,255,255,.08);border:none;border-radius:8px;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s}
+    .modal-close:hover{background:var(--red)}
+
+    /* Modal gallery */
+    .modal-gallery{position:relative;height:300px;background:#0a1620;border-radius:16px 16px 0 0;overflow:hidden}
+    .modal-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+    .modal-gallery img.active{opacity:1}
+    .modal-gall-nav{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+    .modal-gall-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .2s;border:none}
+    .modal-gall-dot.active{background:var(--gold);transform:scale(1.3)}
+    .modal-gall-prev,.modal-gall-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:background .2s}
+    .modal-gall-prev{left:12px}
+    .modal-gall-next{right:12px}
+    .modal-gall-prev:hover,.modal-gall-next:hover{background:var(--red)}
+
+    .modal-body{padding:28px}
+    .modal-top-info{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap}
+    .modal-cat-badge{background:var(--red);color:#fff;font-family:'Barlow Condensed';font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:5px;white-space:nowrap}
+    .modal-title{font-family:'Barlow Condensed';font-weight:900;font-size:clamp(22px,4vw,32px);text-transform:uppercase;line-height:1.05;flex:1}
+    .modal-desc{font-size:14px;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:18px}
+    .modal-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+    .modal-feat{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)}
+    .modal-feat::before{content:'';width:7px;height:7px;background:var(--red);border-radius:50%;flex-shrink:0}
+    .modal-prices-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+    .price-block{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
+    .price-block.nuevo{border-color:rgba(240,192,64,.25);background:rgba(240,192,64,.04)}
+    .price-block .pb-lbl{font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-bottom:4px}
+    .price-block .pb-val{font-family:'Bebas Neue';font-size:34px;color:var(--gold);line-height:1}
+    .price-block.usado .pb-val{color:rgba(255,255,255,.55);font-size:28px}
+    .price-block .pb-note{font-size:10px;color:var(--gray);margin-top:4px}
+    .modal-actions{display:flex;gap:12px}
+    .modal-wa-btn{flex:1;background:#25d366;color:#fff;border:none;padding:15px;border-radius:10px;font-family:'Barlow Condensed';font-weight:800;font-size:15px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+    .modal-wa-btn:hover{background:#1ebe5d}
+    .modal-wa-btn i{font-size:20px}
+    .modal-wa-btn2{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.1);padding:15px 20px;border-radius:10px;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .modal-wa-btn2:hover{background:var(--navy2)}
+
+    /* NO RESULTS */
+    .no-results{text-align:center;padding:80px 20px;color:rgba(255,255,255,.2)}
+    .no-results i{font-size:52px;display:block;margin-bottom:16px}
+
+    /* BACK */
+    .back-section{text-align:center;padding:60px 40px}
+    .back-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--navy);text-decoration:none;padding:14px 32px;border-radius:10px;font-family:'Barlow Condensed';font-weight:800;font-size:15px;letter-spacing:2px;text-transform:uppercase;transition:all .2s}
+    .back-btn:hover{background:#fff;transform:translateY(-2px)}
+
+    footer{background:#070f18;border-top:3px solid var(--red);padding:28px 40px;text-align:center}
+    footer p{font-size:13px;color:var(--gray)}
+    footer span{color:var(--red)}
+
+    @media(max-width:900px){
+      .nav-top{padding:10px 16px}
+      .nav-links{padding:0 16px}
+      .filter-bar{padding:12px 16px;top:72px}
+      .catalog-wrap{padding:20px 16px}
+      .modal-features{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      .products-grid{grid-template-columns:repeat(2,1fr)}
+      .modal-prices-row{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-top">
+    <div class="logo-area">
+      <div class="logo-badge">PC</div>
+      <div class="logo-text">
+        <div class="top">Oportunidades</div>
+        <div class="bottom">Punto Clave</div>
+      </div>
+    </div>
+    <a href="https://wa.me/573053999346" target="_blank" class="wa-btn">
+      <i class="fab fa-whatsapp"></i> +57 305 399 9346
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/camaras" class="active">GoPro</a></li>
+    <li><a href="#">Tecnologia</a></li>
+    <li><a href="#">Remates</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-tag">Aventura sin limites - Bogota, Colombia</div>
+  <div class="hero-title">Catalogo<br>GoPro</div>
+  <p class="hero-sub">Accesorios originales y compatibles - Precios en pesos colombianos</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-lbl">Productos</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-lbl">Categorias</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-lbl">Anos experiencia</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-lbl">Entrega Bogota</div></div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Ver:</span>
+    <button class="filt-btn active" onclick="filterCat('all',this)">Todos</button>
+    <button class="filt-btn" onclick="filterCat('montajes',this)">Montajes</button>
+    <button class="filt-btn" onclick="filterCat('antivib',this)">Antivibración</button>
+    <button class="filt-btn" onclick="filterCat('corporal',this)">Corporal</button>
+    <button class="filt-btn" onclick="filterCat('casco',this)">Cascos</button>
+    <button class="filt-btn" onclick="filterCat('proteccion',this)">Proteccion</button>
+    <button class="filt-btn" onclick="filterCat('acuaticos',this)">Acuaticos</button>
+    <button class="filt-btn" onclick="filterCat('tripodes',this)">Tripodes</button>
+    <button class="filt-btn" onclick="filterCat('energia',this)">Energia</button>
+    <button class="filt-btn" onclick="filterCat('accesorios',this)">Accesorios</button>
+    <div class="search-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Buscar..." oninput="doSearch()"/>
+    </div>
+  </div>
+</div>
+
+<div class="catalog-wrap" id="catalogWrap"></div>
+
+<div class="back-section">
+  <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+</div>
+
+<footer>
+  <p>2025 <span>Punto Clave</span> - Bogota, Colombia - 7 anos de confianza - +57 305 399 9346</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalBg(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div class="modal-gallery" id="modalGallery">
+      <button class="modal-gall-prev" onclick="modalPrev()"><i class="fas fa-chevron-left"></i></button>
+      <button class="modal-gall-next" onclick="modalNext()"><i class="fas fa-chevron-right"></i></button>
+      <div class="modal-gall-nav" id="modalGallNav"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-top-info">
+        <div class="modal-cat-badge" id="mCat"></div>
+        <div class="modal-title" id="mTitle"></div>
+      </div>
+      <div class="modal-desc" id="mDesc"></div>
+      <div class="modal-features" id="mFeats"></div>
+      <div class="modal-prices-row">
+        <div class="price-block nuevo">
+          <div class="pb-lbl">Precio Nuevo</div>
+          <div class="pb-val" id="mPriceNew"></div>
+          <div class="pb-note">IVA incluido</div>
+        </div>
+        <div class="price-block usado">
+          <div class="pb-lbl">Precio Usado</div>
+          <div class="pb-val" id="mPriceUsed"></div>
+          <div class="pb-note">Buen estado garantizado</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-wa-btn" id="mWaBtn"><i class="fab fa-whatsapp"></i> Preguntar por WhatsApp</button>
+        <button class="modal-wa-btn2" onclick="closeModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WA = "573053999346";
+let modalImgIdx = 0;
+let modalImgs = [];
+
+function cop(n){return "$"+n.toLocaleString("es-CO")}
+
+const SECTIONS=[
+  {key:"montajes",name:"Montajes y Bases",sub:"Adhesivas, clips, tornillos y extensiones",icon:"fas fa-camera"},
+  {key:"antivib",name:"Antivibración",sub:"Estabilizacion para moto y bici",icon:"fas fa-wave-square"},
+  {key:"corporal",name:"Soportes Corporales",sub:"Muneca, pecho, mochila y cabeza",icon:"fas fa-user"},
+  {key:"casco",name:"Soportes para Casco",sub:"Para moto, bici y deportes extremos",icon:"fas fa-helmet-safety"},
+  {key:"proteccion",name:"Carcasas y Proteccion",sub:"Impermeables, aluminio y cristal templado",icon:"fas fa-shield-alt"},
+  {key:"acuaticos",name:"Accesorios Acuaticos",sub:"Flotadores, domo y grips submarinos",icon:"fas fa-water"},
+  {key:"tripodes",name:"Tripodes y Extension",sub:"Palos selfie, trípodes y kits",icon:"fas fa-video"},
+  {key:"energia",name:"Baterias y Cargadores",sub:"Mas autonomia para tus aventuras",icon:"fas fa-battery-full"},
+  {key:"accesorios",name:"Accesorios y Control",sub:"Control remoto, audio, ventosa y mas",icon:"fas fa-gamepad"},
+];
+
+const PRODUCTS=[
+  // ===== MONTAJES =====
+  {id:1,cat:"montajes",name:"Base Adhesiva Curva",short:"Para cascos y superficies curvas",
+   desc:"Base adhesiva con adhesivo industrial 3M especial para superficies curvas como cascos, tablas de surf y motos. Resistente al agua, UV y altas temperaturas.",
+   feats:["Adhesivo 3M industrial","Resistente al agua y UV","Compatible con todos los modelos GoPro","Angulo de montaje optimizado para cascos"],
+   imgs:["https://drive.google.com/file/d/1WF7C2WM3N6cINTC0nUJv8RMWVFxN9IqS/view?usp=sharing","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"],
+   pNew:28000,pUsed:18000},
+  {id:2,cat:"montajes",name:"Base Adhesiva Plana",short:"Para superficies lisas y planas",
+   desc:"Base adhesiva para superficies planas como carrocerias, tablas, cascos de cara plana y cualquier superficie lisa. Fijacion permanente con adhesivo 3M.",
+   feats:["Adhesivo 3M resistente","Fijacion permanente","Incluye 3 unidades","Soporta hasta 200g"],
+   imgs:["https://drive.google.com/file/d/1WF7C2WM3N6cINTC0nUJv8RMWVFxN9IqS/view?usp=sharing","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:25000,pUsed:16000},
+  {id:3,cat:"montajes",name:"Soporte con Liberacion Rapida",short:"Montaje y desmontaje en segundos",
+   desc:"Sistema de montaje con liberacion rapida tipo clip. Permite instalar y retirar la camara en segundos sin herramientas. Compatible con todos los accesorios GoPro.",
+   feats:["Liberacion rapida tipo click","Sin herramientas necesarias","Material nylon reforzado","Compatible con todo el ecosistema GoPro"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"],
+   pNew:35000,pUsed:22000},
+  {id:4,cat:"montajes",name:"Tornillos Largos (Thumb Screws)",short:"Repuesto de tornillos de apriete",
+   desc:"Set de tornillos de apriete manual para todos los soportes y accesorios GoPro. Incluye tornillos cortos y largos en acero inoxidable.",
+   feats:["Acero inoxidable","Apriete manual sin herramientas","Compatibles con todos los accesorios","Pack de 4 unidades"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:18000,pUsed:11000},
+  {id:5,cat:"montajes",name:"Adaptador de Montaje Tipo Clip",short:"Conecta accesorios de distintos sistemas",
+   desc:"Adaptador universal que conecta el sistema de montaje GoPro con otros sistemas como Picatinny, ARCA Swiss y trípodes estándar 1/4 pulgada.",
+   feats:["Universal 1/4\" estándar","Conexion segura con bloqueo","Material aluminio aeronáutico","Compatible con todos los modelos"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:32000,pUsed:20000},
+  {id:6,cat:"montajes",name:"Extensiones de Brazo Corto",short:"Aleja la camara del punto de montaje",
+   desc:"Brazos de extension cortos para alejar la camara del punto de montaje y evitar obstrucciones. Disponibles en diferentes longitudes.",
+   feats:["Longitudes de 5, 10 y 20cm","Material nylon resistente","Angulo ajustable","Pack de 3 extensiones diferentes"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"],
+   pNew:38000,pUsed:24000},
+  {id:7,cat:"montajes",name:"Montura para Casco (Base Frontal)",short:"Fijacion frontal profesional",
+   desc:"Base de montaje frontal para cascos de moto, bicicleta y deportes de contacto. Con almohadilla adhesiva de repuesto incluida.",
+   feats:["Almohadilla adhesiva incluida","Angulo de inclinacion ajustable","Compatible con cascos de hasta 58cm","Material resistente a impactos"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:45000,pUsed:29000},
+  {id:8,cat:"montajes",name:"Bases Adhesivas con Tornillos (Pack)",short:"Kit completo de montaje adhesivo",
+   desc:"Pack completo de bases adhesivas curvas, planas y tornillos de repuesto. Todo lo que necesitas para tener puntos de montaje fijos en tus equipos favoritos.",
+   feats:["2 bases curvas + 2 planas","6 tornillos de repuesto","2 almohadillas adhesivas extra","Adhesivo 3M premium"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"],
+   pNew:55000,pUsed:35000},
+  {id:9,cat:"montajes",name:"Adaptador Giratorio 360 Grados",short:"Rotacion completa en cualquier posicion",
+   desc:"Adaptador con rotacion suave de 360 grados y sistema de bloqueo en cualquier angulo. Perfecto para tomas creativas y angulos dinamicos sin desmontar la camara.",
+   feats:["Rotacion 360° con bloqueo","Sistema de bloqueo preciso","Resistente al agua","Compatible con tripodes 1/4\""],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:42000,pUsed:27000},
+
+  // ===== ANTIVIBRACIÓN =====
+  {id:10,cat:"antivib",name:"Soporte Antivibración Doble Brazo",short:"Estabilizacion maxima para moto",
+   desc:"Sistema antivibración de doble brazo con amortiguadores de goma especial. Reduce hasta un 85% la vibracion en motos, quads y bicicletas de montana.",
+   feats:["Reduccion vibracion 85%","Doble brazo de amortiguacion","Material goma industrial","Compatible con manillar 22-28mm"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:85000,pUsed:54000},
+  {id:11,cat:"antivib",name:"Base Estabilizadora Reforzada",short:"Para grabacion fluida en deportes extremos",
+   desc:"Base estabilizadora con sistema de amortiguacion reforzado para deportes de alta velocidad. Garantiza grabaciones fluidas en condiciones extremas.",
+   feats:["Amortiguacion de goma reforzada","Tecnologia shock-absorb","Montaje rapido sin herramientas","Diseno aerodinamico"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"],
+   pNew:72000,pUsed:46000},
+  {id:12,cat:"antivib",name:"Clip Estabilizador",short:"Reduce vibracion en grabaciones",
+   desc:"Clip estabilizador compacto que absorbe las vibraciones entre el punto de montaje y la camara. Compatible con todos los accesorios GoPro estándar.",
+   feats:["Absorcion de vibraciones","Clip compatible con sistema GoPro","Material goma premium","Instalacion en 10 segundos"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:48000,pUsed:30000},
+
+  // ===== CORPORAL =====
+  {id:13,cat:"corporal",name:"Correa para Muneca",short:"Grabacion desde la mano",
+   desc:"Correa de neopreno para la muneca con rotacion 360 grados. Perfecta para surf, natacion, snowboard y cualquier deporte donde necesites las manos libres.",
+   feats:["Rotacion 360 grados","Material neopreno","Ajuste universal","Seguro para deportes acuaticos"],
+   imgs:["https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:48000,pUsed:30000},
+  {id:14,cat:"corporal",name:"Clip para Mochila",short:"Fijacion al tirante de la mochila",
+   desc:"Clip especial que se fija firmemente al tirante de tu mochila, bolso o chaqueta. Captura tus aventuras sin usar las manos con un angulo de pecho perfecto.",
+   feats:["Fijacion al tirante de mochila","Angulo ajustable","Compatible con todos los modelos","Material resistente al impacto"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80"],
+   pNew:45000,pUsed:28000},
+  {id:15,cat:"corporal",name:"Arnes de Pecho",short:"Vista en primera persona perfecta",
+   desc:"Arnes ergonomico para el pecho que proporciona la perspectiva POV perfecta en ciclismo, motocross, escalada y deportes de accion. Ajustable para todas las tallas.",
+   feats:["Ajuste ergonomico universal","Material transpirable","Angulo de camara ajustable","Compatible con todas las GoPro"],
+   imgs:["https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80"],
+   pNew:78000,pUsed:50000},
+  {id:16,cat:"corporal",name:"Soporte de Cabeza (Head Strap)",short:"POV directo desde tu perspectiva",
+   desc:"Banda elastica ajustable para montar la GoPro en la cabeza. Captura exactamente lo que ves en ciclismo, esqui, senderismo y cualquier aventura.",
+   feats:["Banda elastica ajustable","No resbala durante actividad","QuickClip para gorra incluido","Compatible con cascos"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80"],
+   pNew:65000,pUsed:42000},
+  {id:17,cat:"corporal",name:"Adaptador para Smartphone",short:"Usa tu celular con el sistema GoPro",
+   desc:"Soporte universal para smartphone que se conecta al sistema de montaje GoPro. Usa tu celular como camara secundaria o monitor de vista en vivo.",
+   feats:["Compatible con smartphones 5-8\"","Rotacion horizontal y vertical","Compatible con sistema GoPro","Material aluminio"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:55000,pUsed:35000},
+
+  // ===== CASCO =====
+  {id:18,cat:"casco",name:"Brazo Flexible para Casco de Moto",short:"Extension curva para cascos integrales",
+   desc:"Brazo flexible con adhesivo 3M para montar la camara en cascos integrales de moto. La extension curva aleja la camara del casco para una perspectiva cinematografica.",
+   feats:["Adhesivo 3M incluido","Extension curva 15cm","Compatible cascos integrales","Angulo de camara ajustable"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:68000,pUsed:44000},
+  {id:19,cat:"casco",name:"Soporte Frontal para Casco",short:"Montaje en la parte frontal del casco",
+   desc:"Soporte de montaje frontal para cascos de bicicleta, moto y deportes de contacto. Incluye almohadilla adhesiva roja de repuesto y tornillos de seguridad.",
+   feats:["Almohadilla adhesiva incluida","Angulo ajustable","Material resistente a impactos","Compatible con cascos 54-62cm"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"],
+   pNew:55000,pUsed:35000},
+  {id:20,cat:"casco",name:"Soporte Lateral para Casco",short:"Perspectiva lateral unica",
+   desc:"Soporte lateral para cascos que proporciona un angulo de grabacion unico y diferente. Compatible con cascos de full face, half face y deportivos.",
+   feats:["Montaje lateral ajustable","Para cascos full face y half face","Adhesivo extra fuerte","Angulo de filmacion unico"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:60000,pUsed:38000},
+  {id:21,cat:"casco",name:"Arnes de Pecho + Espalda",short:"Doble punto de anclaje",
+   desc:"Arnes profesional con puntos de montaje en el pecho y la espalda. Ideal para deportes de montana, ciclismo de larga distancia y actividades de alto impacto.",
+   feats:["Doble punto de montaje","Ajuste ergonomico profesional","Material de alta durabilidad","Compatible con todas las GoPro"],
+   imgs:["https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:88000,pUsed:57000},
+
+  // ===== PROTECCIÓN =====
+  {id:22,cat:"proteccion",name:"Carcasa Impermeable Hero 5/6/7",short:"Hasta 60 metros de profundidad",
+   desc:"Carcasa profesional impermeable para GoPro Hero 5, 6 y 7. Protege hasta 60 metros de profundidad. A prueba de polvo, nieve, golpes y agua salada.",
+   feats:["Hasta 60m de profundidad","Anti-nevado y anti-polvo","Resistente a golpes","Acceso a todos los botones"],
+   imgs:["https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:148000,pUsed:96000},
+  {id:23,cat:"proteccion",name:"Carcasa Impermeable Hero 8",short:"Diseno especifico para Hero 8 Black",
+   desc:"Carcasa impermeable de diseno especifico para GoPro Hero 8 Black. Mantiene el perfil delgado y permite usar todos los accesorios Media Mod.",
+   feats:["Especifica para Hero 8 Black","Impermeabilidad certificada","Cristal optico sin distorsion","Compatible con Media Mod"],
+   imgs:["https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:158000,pUsed:102000},
+  {id:24,cat:"proteccion",name:"Carcasa Hero 9/10/11/12/13",short:"Para los modelos mas recientes",
+   desc:"Carcasa profesional impermeable compatible con GoPro Hero 9, 10, 11, 12 y 13 Black. La proteccion definitiva para tus aventuras acuaticas con cristal optico premium.",
+   feats:["Compatible Hero 9 al 13","Hasta 60m de profundidad","Cristal optico premium","Cierre de seguridad doble"],
+   imgs:["https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:168000,pUsed:109000},
+  {id:25,cat:"proteccion",name:"Carcasa Aluminio Session 4",short:"Maxima proteccion con estilo",
+   desc:"Carcasa de aluminio aeronautico para GoPro Session 4. Maxima proteccion contra golpes, caidas y aranazo. Apertura lateral sin quitar la carcasa.",
+   feats:["Aluminio aeronautico","Apertura lateral sin desmontar","Disipacion de calor","Disponible en rojo y negro"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:188000,pUsed:122000},
+  {id:26,cat:"proteccion",name:"Protector de Lente y Pantalla",short:"Cristal templado 9H antiarañazo",
+   desc:"Kit de protectores de cristal templado 9H para el lente y la pantalla de tu GoPro. Anti-rayos UV, antireflectante y de facilisima instalacion.",
+   feats:["Dureza 9H","Antireflectante y anti-UV","Kit completo lente + pantalla","Facil instalacion sin burbujas"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:38000,pUsed:24000},
+  {id:27,cat:"proteccion",name:"Espuma Reduccion de Ruido de Viento",short:"Audio profesional en exteriores",
+   desc:"Esponja acustica especial para reducir el ruido del viento en grabaciones al aire libre. Mejora dramaticamente la calidad del audio en ciclismo, surf y otros.",
+   feats:["Reduccion ruido del viento","Material acustico especial","Lavable y reutilizable","Ajuste perfecto en el microfono"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:28000,pUsed:18000},
+
+  // ===== ACUATICOS =====
+  {id:28,cat:"acuaticos",name:"Flotador Mango (The Handler)",short:"Mantiene tu GoPro a flote",
+   desc:"El flotador mas popular de GoPro. Mango ergonomico con alta flotabilidad que evita que tu camara se hunda. Imprescindible para surf, kayak y snorkel.",
+   feats:["Alta flotabilidad certificada","Agarre ergonomico","Color naranja alta visibilidad","Correa de seguridad para muneca"],
+   imgs:["https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:78000,pUsed:50000},
+  {id:29,cat:"acuaticos",name:"Flotador Cuadrado Anti-hundimiento",short:"Proteccion contra perdida en el agua",
+   desc:"Flotador adhesivo de espuma de alta densidad que se fija directamente a tu GoPro. Solucion simple y efectiva para evitar la perdida de tu camara en el agua.",
+   feats:["Espuma de alta densidad","Adhesivo 3M incluido","Compatible con todas las GoPro","Color naranja alta visibilidad"],
+   imgs:["https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:32000,pUsed:20000},
+  {id:30,cat:"acuaticos",name:"Empunadura Submarina",short:"Grip ergonomico para buceo",
+   desc:"Empunadura ergonomica de neopreno para grabaciones submarinas. Proporciona un agarre firme bajo el agua y es compatible con carcasas impermeables.",
+   feats:["Material neopreno premium","Agarre firme bajo el agua","Compatible con carcasas","Cordino de seguridad incluido"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:58000,pUsed:37000},
+  {id:31,cat:"acuaticos",name:"Dome Port Acuatico Hero 5/6/7",short:"Tomas mitad agua mitad aire",
+   desc:"Dome port para capturar las increibles tomas mitad dentro mitad fuera del agua. Transforma completamente tus fotos de surf, natacion y buceo con un efecto cinematografico.",
+   feats:["Para Hero 5, 6 y 7","Cristal optico sin distorsion","Handle flotante incluido","Hasta 30m de profundidad"],
+   imgs:["https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:288000,pUsed:188000},
+  {id:32,cat:"acuaticos",name:"Soporte Ventosa para Carro",short:"Fijacion al vidrio del vehiculo",
+   desc:"Ventosa de alta potencia para el vidrio del carro, moto o cualquier superficie lisa. Con brazo articulado y rotacion completa para los mejores angulos en ruta.",
+   feats:["Fuerza succion 20kg","Brazo articulado incluido","Rotacion 360 grados","Resistente al agua"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80"],
+   pNew:95000,pUsed:62000},
+
+  // ===== TRIPODES =====
+  {id:33,cat:"tripodes",name:"Palo Selfie Extensible 96cm",short:"Extension de 22 a 96.5cm",
+   desc:"Palo selfie de aluminio extensible hasta 96.5cm. Perfecto para selfies, tomas aereas y angulos imposibles. Incluye correa de seguridad para la muneca.",
+   feats:["Extension de 22 a 96.5cm","Aluminio resistente","Correa de seguridad incluida","Compatible con GoPro y camaras 1/4\""],
+   imgs:["https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:68000,pUsed:44000},
+  {id:34,cat:"tripodes",name:"Tripode 3-Way (3 en 1)",short:"Tripode, grip y brazo en uno",
+   desc:"El accesorio mas versatil de GoPro. Funciona como tripode compacto, grip de mano y brazo extensible. Perfecto para youtubers y creadores de contenido.",
+   feats:["3 funciones en 1","Tripode compacto desplegable","Grip ergonomico de mano","Brazo extensible hasta 38cm"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:178000,pUsed:116000},
+  {id:35,cat:"tripodes",name:"Mini Tripode Flexible (Pulpo)",short:"Se engancha en cualquier lugar",
+   desc:"Tripode flexible con patas articuladas que se adaptan a cualquier superficie. Se puede enrollar en ramas, barras o apoyar en superficies irregulares.",
+   feats:["Patas 100% flexibles","Cabeza rotatoria 360°","Compatible con GoPro y smartphones","Peso ultra ligero 180g"],
+   imgs:["https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80"],
+   pNew:55000,pUsed:35000},
+  {id:36,cat:"tripodes",name:"Selfie Stick + Tripode Mini",short:"El mas completo 2 en 1",
+   desc:"Combo selfie stick extensible con mini tripode desplegable integrado en la base. Perfecto para vlog, viajes y contenido en solitario.",
+   feats:["Tripode desplegable en la base","Extension hasta 70cm","Cabeza articulada","Compatible GoPro y smartphones"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"],
+   pNew:85000,pUsed:55000},
+  {id:37,cat:"tripodes",name:"Jaws Pinza Flexible",short:"Pinza que se sujeta en cualquier objeto",
+   desc:"La famosa pinza Jaws de GoPro que se sujeta en casi cualquier objeto. Perfecta para ramas, barras, mesas, mochilas y mas. Rotacion de 360 grados.",
+   feats:["Apertura maxima 8cm","Rotacion 360 grados","Material goma de alta resistencia","Compatible con todos los modelos"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:118000,pUsed:76000},
+  {id:38,cat:"tripodes",name:"Correa de Seguridad con Adhesivo 3M",short:"Protege tu camara de caidas",
+   desc:"Correa de seguridad con base adhesiva 3M que se fija al casco o accesorio y la camara. En caso de que el montaje falle, la camara no cae.",
+   feats:["Adhesivo 3M industrial","Resistencia de carga 2kg","Compatible con todos los modelos","Cable de acero inoxidable"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:28000,pUsed:18000},
+
+  // ===== ENERGIA =====
+  {id:39,cat:"energia",name:"Bateria Extra Hero 9/10/11/12/13",short:"1600mAh - hasta 2h adicionales",
+   desc:"Bateria de reemplazo 1600mAh compatible con GoPro Hero 9, 10, 11, 12 y 13 Black. Hasta 2 horas adicionales de grabacion continua en 4K.",
+   feats:["Capacidad 1600mAh","Compatible Hero 9 al 13","Hasta 2 horas adicionales","Certificacion CE y RoHS"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:95000,pUsed:62000},
+  {id:40,cat:"energia",name:"Bateria Extra Hero 5/6/7/8",short:"1160mAh compatible original",
+   desc:"Bateria de reemplazo de alta capacidad para GoPro Hero 5, 6, 7 y 8 Black. Misma calidad de grabacion que la original. Disponible en pack de 2.",
+   feats:["Capacidad 1160mAh","Compatible Hero 5/6/7/8","Misma duracion que la original","Pack de 2 baterias disponible"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:75000,pUsed:48000},
+  {id:41,cat:"energia",name:"Cargador Doble con LCD Hero 5/6/7/8",short:"Carga 2 baterias a la vez",
+   desc:"Cargador inteligente con pantalla LCD que muestra el nivel de carga de cada bateria. Carga 2 baterias simultaneamente para Hero 5, 6, 7 y 8.",
+   feats:["Pantalla LCD en tiempo real","2 baterias simultaneas","Carga rapida 2A","Entrada USB-C"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:88000,pUsed:57000},
+  {id:42,cat:"energia",name:"Cargador Doble Original Hero 9/10/11/12",short:"Dual Battery Charger oficial",
+   desc:"Cargador oficial de GoPro Dual Battery Charger + Enduro. Para cargar simultaneamente 2 baterias de los modelos mas recientes. El accesorio esencial.",
+   feats:["Cargador oficial GoPro","2 baterias simultaneas","Compatible Enduro Battery","LED indicador de carga"],
+   imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:168000,pUsed:109000},
+
+  // ===== ACCESORIOS =====
+  {id:43,cat:"accesorios",name:"Control Remoto Smart Remote Hero 5-8",short:"Control hasta 10 metros de distancia",
+   desc:"Control remoto resistente al agua con pantalla LCD. Controla hasta 3 camaras GoPro a la vez desde hasta 10 metros. Imprescindible para fotografos de accion.",
+   feats:["Resistente al agua hasta 10m","Pantalla LCD integrada","Controla hasta 3 camaras","Bateria dura 30 dias"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:188000,pUsed:122000},
+  {id:44,cat:"accesorios",name:"Soporte Bola (Ball Mount)",short:"Angulos creativos con rotula",
+   desc:"Soporte con rotula esferica que permite ajustar el angulo de la camara en cualquier direccion con un solo movimiento. Fijacion firme con bloqueo de tension.",
+   feats:["Rotula esferica 360°","Fijacion con bloqueo de tension","Rosca estandar 1/4\"","Material aluminio"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:52000,pUsed:33000},
+  {id:45,cat:"accesorios",name:"Llave Allen y Tornillos de Repuesto",short:"Kit de herramientas completo",
+   desc:"Kit de herramientas de repuesto con llave allen y tornillos de todas las medidas para todos los accesorios GoPro. Nunca te quedas sin el tornillo correcto.",
+   feats:["Llave allen incluida","Tornillos de todas las medidas","Acero inoxidable","Estuche organizador"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80","https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80"],
+   pNew:22000,pUsed:14000},
+  {id:46,cat:"accesorios",name:"Estuche Rigido GoPro",short:"Proteccion total para todo el kit",
+   desc:"Estuche rigido con espuma customizable para organizar y proteger tu GoPro y todos sus accesorios. Certificado IP67. Ideal para viajes y aventuras largas.",
+   feats:["Espuma customizable","Certificacion IP67","Cierre de seguridad doble","Compatible con todo el kit"],
+   imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:148000,pUsed:96000},
+  {id:47,cat:"accesorios",name:"Estuche Compacto con Cremallera",short:"Transporte ligero y elegante",
+   desc:"Estuche semi-rigido oficial de GoPro. Ligero, compacto y con material exterior resistente al agua. Perfecto para llevar tu kit en cualquier aventura del dia.",
+   feats:["Material exterior resistente al agua","Interior suave antirayones","Bolsillo exterior adicional","2 tallas disponibles"],
+   imgs:["https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600&q=80","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80","https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80","https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"],
+   pNew:96000,pUsed:62000},
+];
+
+let curFilter="all", curSearch="";
+
+function renderAll(){
+  const wrap=document.getElementById("catalogWrap");
+  wrap.innerHTML="";
+  let anyVisible=false;
+  SECTIONS.forEach(sec=>{
+    const prods=PRODUCTS.filter(p=>{
+      const catOk=curFilter==="all"||p.cat===sec.key;
+      const srchOk=curSearch===""||p.name.toLowerCase().includes(curSearch)||p.short.toLowerCase().includes(curSearch);
+      return p.cat===sec.key&&catOk&&srchOk;
+    });
+    if(!prods.length)return;
+    anyVisible=true;
+    const secEl=document.createElement("div");
+    secEl.innerHTML=`
+      <div class="sec-head">
+        <div class="sec-icon"><i class="${sec.icon}"></i></div>
+        <div class="sec-info"><div class="sec-name">${sec.name}</div><div class="sec-sub">${sec.sub}</div></div>
+        <div class="sec-count">${prods.length}</div>
+      </div>
+      <div class="products-grid" id="g-${sec.key}"></div>
+    `;
+    wrap.appendChild(secEl);
+    const grid=secEl.querySelector(`#g-${sec.key}`);
+    prods.forEach(p=>{
+      const card=document.createElement("div");
+      card.className="prod-card";
+      card.onclick=()=>openModal(p);
+      card.innerHTML=`
+        <div class="card-gallery" id="cg-${p.id}">
+          ${p.imgs.map((img,i)=>`<img src="${img}" alt="${p.name}" class="${i===0?'active':''}" loading="lazy"/>`).join("")}
+          <div class="gallery-dots">
+            ${p.imgs.map((_,i)=>`<div class="gallery-dot ${i===0?'active':''}" onclick="event.stopPropagation();cardDot(${p.id},${i})"></div>`).join("")}
+          </div>
+          <div class="card-badge">${sec.name.split(" ")[0]}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">${sec.name}</div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-short">${p.short}</div>
+          <div class="card-prices">
+            <div>
+              <div class="price-new-sm">${cop(p.pNew)}</div>
+              <div class="price-new-lbl">Nuevo</div>
+            </div>
+            <div>
+              <div class="price-used-sm">${cop(p.pUsed)}</div>
+              <div class="price-new-lbl">Usado</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-wa-sm" onclick="event.stopPropagation();askWA('${p.name}',${p.pNew},${p.pUsed})">
+            <i class="fab fa-whatsapp"></i> Preguntar
+          </button>
+          <button class="btn-expand" onclick="event.stopPropagation();openModal(PRODUCTS.find(x=>x.id===${p.id}))">
+            <i class="fas fa-expand-alt"></i>
+          </button>
+        </div>
+      `;
+      // Auto rotate gallery
+      let idx=0;
+      setInterval(()=>{
+        idx=(idx+1)%p.imgs.length;
+        const g=document.getElementById(`cg-${p.id}`);
+        if(!g)return;
+        g.querySelectorAll("img").forEach((im,i)=>im.classList.toggle("active",i===idx));
+        g.querySelectorAll(".gallery-dot").forEach((d,i)=>d.classList.toggle("active",i===idx));
+      },2800+p.id*200);
+      grid.appendChild(card);
+    });
+  });
+  if(!anyVisible)wrap.innerHTML=`<div class="no-results"><i class="fas fa-search"></i><p>No se encontraron productos.</p></div>`;
+}
+
+function cardDot(pid,idx){
+  const g=document.getElementById(`cg-${pid}`);
+  if(!g)return;
+  g.querySelectorAll("img").forEach((im,i)=>im.classList.toggle("active",i===idx));
+  g.querySelectorAll(".gallery-dot").forEach((d,i)=>d.classList.toggle("active",i===idx));
+}
+
+function filterCat(cat,btn){
+  curFilter=cat;
+  document.querySelectorAll(".filt-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderAll();
+}
+
+function doSearch(){
+  curSearch=document.getElementById("searchInput").value.toLowerCase().trim();
+  renderAll();
+}
+
+// MODAL
+function openModal(p){
+  const secName=SECTIONS.find(s=>s.key===p.cat)?.name||p.cat;
+  document.getElementById("mCat").textContent=secName;
+  document.getElementById("mTitle").textContent=p.name;
+  document.getElementById("mDesc").textContent=p.desc;
+  document.getElementById("mFeats").innerHTML=p.feats.map(f=>`<div class="modal-feat">${f}</div>`).join("");
+  document.getElementById("mPriceNew").textContent=cop(p.pNew);
+  document.getElementById("mPriceUsed").textContent=cop(p.pUsed);
+  // gallery
+  modalImgs=p.imgs; modalImgIdx=0;
+  buildModalGallery();
+  document.getElementById("mWaBtn").onclick=()=>askWA(p.name,p.pNew,p.pUsed);
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+
+function buildModalGallery(){
+  const g=document.getElementById("modalGallery");
+  g.querySelectorAll("img").forEach(im=>im.remove());
+  modalImgs.forEach((src,i)=>{
+    const im=document.createElement("img");
+    im.src=src; im.alt="producto";
+    if(i===modalImgIdx)im.classList.add("active");
+    g.insertBefore(im,g.firstChild);
+  });
+  const nav=document.getElementById("modalGallNav");
+  nav.innerHTML=modalImgs.map((_,i)=>`<button class="modal-gall-dot ${i===modalImgIdx?'active':''}" onclick="goModalImg(${i})"></button>`).join("");
+}
+
+function goModalImg(i){
+  modalImgIdx=i;
+  buildModalGallery();
+}
+function modalPrev(){goModalImg((modalImgIdx-1+modalImgs.length)%modalImgs.length)}
+function modalNext(){goModalImg((modalImgIdx+1)%modalImgs.length)}
+
+function closeModal(){
+  document.getElementById("modalOverlay").classList.remove("open");
+  document.body.style.overflow="";
+}
+function closeModalBg(e){if(e.target===document.getElementById("modalOverlay"))closeModal();}
+
+function askWA(name,pNew,pUsed){
+  const msg=`Hola! Me interesa: ${name} (Nuevo: ${cop(pNew)} / Usado: ${cop(pUsed)}). Podrias darme mas informacion?`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+renderAll();
+</script>
+</body>
+</html>

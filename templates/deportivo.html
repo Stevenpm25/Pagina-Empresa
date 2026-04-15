@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deportivo - Punto Clave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{--navy:#0d1b2a;--navy2:#112031;--red:#c0392b;--red2:#e74c3c;--gold:#f0c040;--white:#fff;--gray:#7f8c8d;--card:#0f1d2c;--green:#1a7a36}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+    nav{background:var(--navy);border-bottom:3px solid var(--red);position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.6)}
+    .nav-top{display:flex;align-items:center;justify-content:space-between;padding:10px 40px}
+    .logo-area{display:flex;align-items:center;gap:12px}
+    .logo-badge{width:50px;height:50px;background:linear-gradient(135deg,var(--navy2),#1a2e42);border:2px solid var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:20px;color:var(--gold)}
+    .logo-text .top{font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+    .logo-text .bottom{font-family:'Barlow Condensed';font-weight:900;font-size:20px;text-transform:uppercase}
+    .wa-btn{display:flex;align-items:center;gap:8px;background:#25d366;color:#fff;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border-radius:8px;text-decoration:none;transition:background .2s}
+    .wa-btn:hover{background:#1ebe5d}
+    .nav-links{background:var(--red);display:flex;list-style:none;padding:0 40px;flex-wrap:wrap}
+    .nav-links a{display:block;padding:10px 16px;color:#fff;text-decoration:none;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:background .2s}
+    .nav-links a:hover,.nav-links a.active{background:rgba(0,0,0,.25)}
+
+    /* HERO */
+    .page-hero{background:linear-gradient(135deg,rgba(10,20,35,.96) 40%,rgba(26,122,54,.3) 100%),url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80') center/cover;padding:56px 40px;text-align:center}
+    .hero-tag{font-size:11px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+    .hero-title{font-family:'Bebas Neue';font-size:clamp(52px,9vw,100px);line-height:.9;background:linear-gradient(90deg,#fff 55%,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{margin-top:12px;font-size:15px;color:rgba(255,255,255,.72)}
+    .hero-stats{display:flex;gap:30px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+    .stat{text-align:center}
+    .stat-num{font-family:'Bebas Neue';font-size:32px;color:var(--gold)}
+    .stat-lbl{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase}
+
+    /* FILTROS */
+    .filter-bar{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,.06);padding:16px 40px;position:sticky;top:78px;z-index:900}
+    .filter-inner{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .filter-label{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-right:4px;white-space:nowrap}
+    .filt-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:20px;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .filt-btn:hover,.filt-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+    .search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:7px 14px}
+    .search-wrap input{background:none;border:none;outline:none;color:#fff;font-family:'Barlow';font-size:13px;width:160px}
+    .search-wrap input::placeholder{color:rgba(255,255,255,.3)}
+
+    /* CONTENIDO */
+    .catalog-wrap{padding:36px 40px;max-width:1600px;margin:0 auto}
+    .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .sec-head:first-child{margin-top:0}
+    .sec-icon{width:42px;height:42px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+    .sec-info .sec-name{font-family:'Barlow Condensed';font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.5px}
+    .sec-info .sec-sub{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:2px;text-transform:uppercase;margin-top:1px}
+    .sec-count{margin-left:auto;font-family:'Bebas Neue';font-size:22px;color:rgba(255,255,255,.15)}
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+
+    /* CARD - imagen fija */
+    .prod-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .22s,border-color .22s,box-shadow .22s;position:relative;display:flex;flex-direction:column}
+    .prod-card:hover{transform:translateY(-5px);border-color:rgba(192,57,43,.6);box-shadow:0 14px 40px rgba(0,0,0,.5)}
+    .card-img-wrap{position:relative;height:200px;overflow:hidden;background:#0a1620}
+    .card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+    .prod-card:hover .card-img-wrap img{transform:scale(1.04)}
+    .card-img-count{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.65);color:rgba(255,255,255,.8);font-family:'Barlow Condensed';font-size:11px;letter-spacing:1px;padding:3px 8px;border-radius:4px;z-index:3;display:flex;align-items:center;gap:4px}
+    .card-badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-family:'Barlow Condensed';font-weight:800;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:4px;z-index:3}
+    .card-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:5px}
+    .card-cat{font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+    .card-name{font-family:'Barlow Condensed';font-weight:800;font-size:15px;text-transform:uppercase;line-height:1.15;color:#fff}
+    .card-short{font-size:12px;color:rgba(255,255,255,.5);line-height:1.4;margin-top:2px}
+    .card-prices{display:flex;gap:12px;align-items:baseline;margin-top:auto;padding-top:8px}
+    .price-new-sm{font-family:'Bebas Neue';font-size:22px;color:var(--gold)}
+    .price-lbl{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase}
+    .price-used-sm{font-family:'Bebas Neue';font-size:17px;color:rgba(255,255,255,.4)}
+    .card-footer{padding:0 14px 14px;display:flex;gap:8px}
+    .btn-wa-sm{flex:1;background:#25d366;color:#fff;border:none;padding:9px;border-radius:7px;font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s}
+    .btn-wa-sm:hover{background:#1ebe5d}
+    .btn-expand{width:34px;height:34px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.5);transition:all .2s;flex-shrink:0}
+    .btn-expand:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+    /* MODAL */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:20px}
+    .modal-overlay.open{display:flex}
+    .modal{background:#0f1e2e;border:1px solid rgba(255,255,255,.1);border-radius:16px;max-width:860px;width:100%;max-height:92vh;overflow-y:auto;position:relative;animation:modalIn .25s ease}
+    @keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;background:rgba(255,255,255,.08);border:none;border-radius:8px;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s}
+    .modal-close:hover{background:var(--red)}
+    .modal-gallery{position:relative;height:320px;background:#0a1620;border-radius:16px 16px 0 0;overflow:hidden}
+    .modal-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+    .modal-gallery img.active{opacity:1}
+    .modal-gall-nav{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+    .mgdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .2s;border:none}
+    .mgdot.active{background:var(--gold);transform:scale(1.3)}
+    .mg-prev,.mg-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:background .2s}
+    .mg-prev{left:12px}.mg-next{right:12px}
+    .mg-prev:hover,.mg-next:hover{background:var(--red)}
+    .modal-img-counter{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-family:'Barlow Condensed';font-size:13px;padding:4px 10px;border-radius:6px;z-index:4}
+    .modal-body{padding:28px}
+    .modal-top-info{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+    .modal-cat-badge{background:var(--red);color:#fff;font-family:'Barlow Condensed';font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:5px;white-space:nowrap}
+    .modal-title{font-family:'Barlow Condensed';font-weight:900;font-size:clamp(22px,4vw,30px);text-transform:uppercase;line-height:1.05;flex:1}
+    .modal-desc{font-size:14px;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:18px}
+    .modal-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+    .mfeat{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)}
+    .mfeat::before{content:'';width:7px;height:7px;background:var(--red);border-radius:50%;flex-shrink:0}
+    .modal-prices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+    .pb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
+    .pb.nuevo{border-color:rgba(240,192,64,.25);background:rgba(240,192,64,.04)}
+    .pb .pbl{font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-bottom:4px}
+    .pb .pbv{font-family:'Bebas Neue';font-size:34px;color:var(--gold);line-height:1}
+    .pb.usado .pbv{color:rgba(255,255,255,.55);font-size:28px}
+    .pb .pbn{font-size:10px;color:var(--gray);margin-top:4px}
+    .modal-actions{display:flex;gap:12px}
+    .mwa{flex:1;background:#25d366;color:#fff;border:none;padding:15px;border-radius:10px;font-family:'Barlow Condensed';font-weight:800;font-size:15px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+    .mwa:hover{background:#1ebe5d}
+    .mwa i{font-size:20px}
+    .mclose{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.1);padding:15px 20px;border-radius:10px;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+    .no-results{text-align:center;padding:80px 20px;color:rgba(255,255,255,.2)}
+    .no-results i{font-size:52px;display:block;margin-bottom:16px}
+    .back-section{text-align:center;padding:60px 40px}
+    .back-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--navy);text-decoration:none;padding:14px 32px;border-radius:10px;font-family:'Barlow Condensed';font-weight:800;font-size:15px;letter-spacing:2px;text-transform:uppercase;transition:all .2s}
+    .back-btn:hover{background:#fff;transform:translateY(-2px)}
+    footer{background:#070f18;border-top:3px solid var(--red);padding:28px 40px;text-align:center}
+    footer p{font-size:13px;color:var(--gray)}
+    footer span{color:var(--red)}
+    @media(max-width:900px){.nav-top{padding:10px 16px}.nav-links{padding:0 10px}.filter-bar{padding:12px 16px;top:72px}.catalog-wrap{padding:20px 16px}.modal-feats{grid-template-columns:1fr}}
+    @media(max-width:600px){.products-grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-top">
+    <div class="logo-area">
+      <div class="logo-badge">PC</div>
+      <div class="logo-text">
+        <div class="top">Oportunidades</div>
+        <div class="bottom">Punto Clave</div>
+      </div>
+    </div>
+    <a href="https://wa.me/573053999346" target="_blank" class="wa-btn">
+      <i class="fab fa-whatsapp"></i> +57 305 399 9346
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/camaras">Camaras</a></li>
+    <li><a href="#">Tecnologia</a></li>
+    <li><a href="/deportivo" class="active">Deportivo</a></li>
+    <li><a href="#">Compra y Venta</a></li>
+    <li><a href="#">WhatsApp</a></li>
+    <li><a href="#">Ubicacion</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-tag">Fitness y bienestar - Bogota, Colombia</div>
+  <div class="hero-title">Deportivo</div>
+  <p class="hero-sub">Equipos de fitness, yoga, pilates y entrenamiento en casa</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">33</div><div class="stat-lbl">Productos</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-lbl">Categorias</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-lbl">Anos experiencia</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-lbl">Entrega Bogota</div></div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Ver:</span>
+    <button class="filt-btn active" onclick="filterCat('all',this)">Todos</button>
+    <button class="filt-btn" onclick="filterCat('ruedas',this)">Ruedas Ab</button>
+    <button class="filt-btn" onclick="filterCat('bandas',this)">Bandas</button>
+    <button class="filt-btn" onclick="filterCat('cuerdas',this)">Cuerdas</button>
+    <button class="filt-btn" onclick="filterCat('foam',this)">Foam Roller</button>
+    <button class="filt-btn" onclick="filterCat('yoga',this)">Yoga/Pilates</button>
+    <button class="filt-btn" onclick="filterCat('fuerza',this)">Fuerza</button>
+    <button class="filt-btn" onclick="filterCat('peso',this)">Pesas</button>
+    <div class="search-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Buscar..." oninput="doSearch()"/>
+    </div>
+  </div>
+</div>
+
+<div class="catalog-wrap" id="catalogWrap"></div>
+
+<div class="back-section">
+  <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+</div>
+
+<footer>
+  <p>2025 <span>Punto Clave</span> - Bogota, Colombia - 7 anos de confianza - +57 305 399 9346</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeMBg(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeM()"><i class="fas fa-times"></i></button>
+    <div class="modal-gallery" id="mGall">
+      <button class="mg-prev" onclick="mPrev()"><i class="fas fa-chevron-left"></i></button>
+      <button class="mg-next" onclick="mNext()"><i class="fas fa-chevron-right"></i></button>
+      <div class="modal-gall-nav" id="mGallNav"></div>
+      <div class="modal-img-counter" id="mCounter"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-top-info">
+        <div class="modal-cat-badge" id="mCat"></div>
+        <div class="modal-title" id="mTitle"></div>
+      </div>
+      <div class="modal-desc" id="mDesc"></div>
+      <div class="modal-feats" id="mFeats"></div>
+      <div class="modal-prices">
+        <div class="pb nuevo"><div class="pbl">Precio Nuevo</div><div class="pbv" id="mPN"></div><div class="pbn">IVA incluido</div></div>
+        <div class="pb usado"><div class="pbl">Precio Usado</div><div class="pbv" id="mPU"></div><div class="pbn">Buen estado</div></div>
+      </div>
+      <div class="modal-actions">
+        <button class="mwa" id="mWaBtn"><i class="fab fa-whatsapp"></i> Preguntar por WhatsApp</button>
+        <button class="mclose" onclick="closeM()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WA="573053999346";
+const B="/static/image/deportivo/";
+
+const SECTIONS=[
+  {key:"ruedas",name:"Ruedas y Rodillos Abdominales",sub:"Fortalece tu core en casa",icon:"fas fa-circle-notch"},
+  {key:"bandas",name:"Bandas de Resistencia",sub:"Elasticos y kits para todo nivel",icon:"fas fa-project-diagram"},
+  {key:"cuerdas",name:"Cuerdas para Saltar",sub:"Cardio intenso y coordinacion",icon:"fas fa-circle"},
+  {key:"foam",name:"Foam Roller y Masaje",sub:"Recuperacion muscular y liberacion miofascial",icon:"fas fa-spa"},
+  {key:"yoga",name:"Yoga, Pilates y Equilibrio",sub:"Tapetes, bloques, colchonetas y mas",icon:"fas fa-leaf"},
+  {key:"fuerza",name:"Fuerza y Entrenamiento",sub:"Push up, barras, calleras y ejercitadores",icon:"fas fa-dumbbell"},
+  {key:"peso",name:"Pesas y Peso Corporal",sub:"Chalecos, tobilleras y juegos de pesas",icon:"fas fa-weight-hanging"},
+];
+
+const PRODUCTS=[
+
+  // ===== RUEDAS ABDOMINALES =====
+  {id:1,cat:"ruedas",name:"Rueda Abdominal",short:"Ejercicio core en casa",
+   desc:"Rueda abdominal clasica para trabajar el core, abdomen y lumbar. Con rodamiento de precision y agarres antideslizantes. Incluye rodillera.",
+   feats:["Rodamiento de precision silencioso","Agarres antideslizantes","Incluye rodillera acolchada","Compatible con todo tipo de piso"],
+   imgs:[B+"rueda_abdominal_01.jpg",B+"rueda_abdominal_02.jpg",B+"rueda_abdominal_03.jpg",B+"rueda_abdominal_04.jpg"],
+   pNew:35000,pUsed:22000},
+
+  {id:2,cat:"ruedas",name:"Roller Slide",short:"Deslizamiento para ejercicio de core",
+   desc:"Discos deslizantes tipo slide para ejercicios de core, lunges y movimientos funcionales. Uso en pisos lisos y alfombras.",
+   feats:["Doble cara: piso duro y alfombra","Bajo impacto para articulaciones","Ejercicios de core y tren inferior","Compactos y ligeros"],
+   imgs:[B+"roller_slide_01.jpg",B+"roller_slide_02.jpg"],
+   pNew:28000,pUsed:18000},
+
+  {id:3,cat:"ruedas",name:"Rodillo Abdominal",short:"Control y fuerza de core avanzado",
+   desc:"Rodillo abdominal con mecanismo de retorno automatico para principiantes. Fortalece abdomen, dorsales, hombros y brazos en un solo movimiento.",
+   feats:["Mecanismo retorno automatico","Apto para principiantes","Fortalece multiples grupos musculares","Material resistente"],
+   imgs:[B+"rodillo_abdominal_01.jpg",B+"rodillo_abdominal_02.jpg",B+"rodillo_abdominal_03.jpg",B+"rodillo_abdominal_04.jpg"],
+   pNew:42000,pUsed:27000},
+
+  {id:4,cat:"ruedas",name:"Rueda Abdominal Multifuncion",short:"3 ruedas para mayor estabilidad",
+   desc:"Rueda abdominal de 3 llantas que ofrece mayor estabilidad y control durante el ejercicio. Ideal para usuarios intermedios y avanzados.",
+   feats:["3 ruedas para mayor estabilidad","Rodamiento de alta resistencia","Agarre ergonomico","Incluye tapete de rodillas"],
+   imgs:[B+"rueda_multifuncion_01.jpg",B+"rueda_multifuncion_02.jpg",B+"rueda_multifuncion_03.jpg"],
+   pNew:48000,pUsed:30000},
+
+  // ===== BANDAS =====
+  {id:5,cat:"bandas",name:"Bandas de Resistencia con Pedales",short:"Ejercicio de brazos y piernas sentado",
+   desc:"Bandas elasticas con pedales para ejercitar brazos, piernas y espalda desde casa. Ideal para rehabilitacion y activacion muscular suave.",
+   feats:["Pedales antideslizantes","Ajuste de tension","Sin necesidad de suelo","Ideal para adultos mayores y rehab"],
+   imgs:[B+"bandas_resistencia_01.jpg",B+"bandas_resistencia_02.jpg",B+"bandas_resistencia_03.jpg"],
+   pNew:38000,pUsed:24000},
+
+  {id:6,cat:"bandas",name:"Theraband Bandas Elasticas",short:"Fisioterapia y entrenamiento funcional",
+   desc:"Bandas elasticas profesionales tipo Theraband para fisioterapia, pilates y entrenamiento funcional. Disponibles en diferentes niveles de resistencia.",
+   feats:["Latex natural de alta calidad","Diferentes niveles de resistencia","Para fisioterapia y entrenamiento","Lavables y reutilizables"],
+   imgs:[B+"bandas_resistencia_04.jpg",B+"bandas_resistencia_05.jpg",B+"bandas_resistencia_06.jpg",B+"bandas_resistencia_07.jpg"],
+   pNew:32000,pUsed:20000},
+
+  {id:7,cat:"bandas",name:"Kit Barra Pilates con Bandas",short:"Entrenamiento completo cuerpo entero",
+   desc:"Kit de barra pilates portatil con bandas elasticas integradas. Trabaja tren inferior, superior y core en un solo equipo portatil.",
+   feats:["Barra ajustable","Bandas elasticas incluidas","Portatil y ligero","Ejercicios de cuerpo completo"],
+   imgs:[B+"kit_bandas_01.jpg",B+"kit_bandas_02.jpg",B+"kit_bandas_03.jpg"],
+   pNew:55000,pUsed:35000},
+
+  {id:8,cat:"bandas",name:"Kit de Bandas Elasticas 5 Unidades",short:"5 niveles de resistencia en un kit",
+   desc:"Set de 5 bandas de latex con diferentes niveles de resistencia. Incluye bolsa de transporte y manual de ejercicios.",
+   feats:["5 bandas de diferente resistencia","Material latex de alta calidad","Bolsa de transporte incluida","Manual de ejercicios"],
+   imgs:[B+"kit_bandas_04.jpg",B+"kit_bandas_05.jpg",B+"kit_bandas_06.jpg"],
+   pNew:45000,pUsed:28000},
+
+  {id:9,cat:"bandas",name:"Bandas de Resistencia",short:"Para entrenamiento funcional completo",
+   desc:"Bandas de resistencia de latex para entrenamiento funcional, crossfit y rehabilitacion. Alta durabilidad y resistencia.",
+   feats:["Alta durabilidad","Para crossfit y funcional","Multiples ejercicios posibles","No se desgastan facil"],
+   imgs:[B+"bandas_resistencia_08.jpg",B+"bandas_resistencia_09.jpg",B+"bandas_resistencia_10.jpg"],
+   pNew:28000,pUsed:18000},
+
+  {id:10,cat:"bandas",name:"Bandas de Resistencia con Manijas",short:"Mayor comodidad en el entrenamiento",
+   desc:"Bandas de resistencia con manijas acolchadas y anclaje para puerta. Ejercicios de polea para espalda, biceps y triceps.",
+   feats:["Manijas acolchadas ergonomicas","Anclaje para puerta incluido","Ejercicios tipo polea","Resistencia ajustable"],
+   imgs:[B+"bandas_resistencia_11.jpg",B+"bandas_resistencia_12.jpg"],
+   pNew:42000,pUsed:27000},
+
+  // ===== CUERDAS =====
+  {id:11,cat:"cuerdas",name:"Soga para Saltar con Rodaje Interno",short:"Cardio intenso y coordinacion",
+   desc:"Soga para saltar profesional con rodaje interno de alta velocidad. Para boxeo, crossfit y cardio intenso. Cuerda de acero recubierta.",
+   feats:["Rodaje interno de alta velocidad","Cuerda de acero recubierta","Mango ergonomico antideslizante","Ajuste de longitud"],
+   imgs:[B+"soga_saltar_01.jpg",B+"soga_saltar_02.jpg",B+"soga_saltar_03.jpg"],
+   pNew:35000,pUsed:22000},
+
+  // ===== FOAM ROLLER =====
+  {id:12,cat:"foam",name:"Foam Roller",short:"Liberacion miofascial y recuperacion",
+   desc:"Rodillo de espuma de alta densidad para liberacion miofascial, recuperacion post-entrenamiento y masaje muscular. Ideal para fisioterapia y yoga.",
+   feats:["Alta densidad EVA","Superficie texturizada para mayor efectividad","Alivia tension muscular","Para todos los grupos musculares"],
+   imgs:[B+"foam_roller_01.jpg",B+"foam_roller_02.jpg",B+"foam_roller_03.jpg",B+"foam_roller_04.jpg"],
+   pNew:52000,pUsed:33000},
+
+  {id:13,cat:"foam",name:"Rodillo de Masaje Miofascial",short:"Recuperacion muscular profunda",
+   desc:"Rodillo de masaje con superficie rugosa para trabajar la liberacion miofascial de manera mas profunda. Ideal para piernas, espalda e IT band.",
+   feats:["Superficie rugosa para mayor presion","Material EVA de alta densidad","Ligero y portatil","Para muslos, IT band y espalda"],
+   imgs:[B+"foam_roller_02.jpg",B+"foam_roller_03.jpg",B+"foam_roller_04.jpg"],
+   pNew:45000,pUsed:29000},
+
+  // ===== YOGA / PILATES =====
+  {id:14,cat:"yoga",name:"Cojin de Equilibrio Inestable",short:"Balance, terapia, gym, pilates y yoga",
+   desc:"Cojin inflable inestable para mejorar el equilibrio, la propiocepcion y el core. Uso en fisioterapia, yoga, pilates y entrenamiento funcional.",
+   feats:["Superficie inestable para mayor activacion","Inflable y ajustable","Para yoga, pilates y rehab","Resistente hasta 150kg"],
+   imgs:[B+"cojin_equilibrio_01.jpg",B+"cojin_equilibrio_02.jpg"],
+   pNew:42000,pUsed:27000},
+
+  {id:15,cat:"yoga",name:"Ladrillo de Yoga Pilates",short:"Soporte y profundidad en posturas",
+   desc:"Bloque de yoga de espuma EVA de alta densidad para soporte en posturas, mayor profundidad y alineacion correcta en yoga y pilates.",
+   feats:["Espuma EVA de alta densidad","3 alturas de uso","Superficie antideslizante","Ligero y duradero"],
+   imgs:[B+"ladrillo_yoga_01.jpg",B+"ladrillo_yoga_02.jpg"],
+   pNew:28000,pUsed:18000},
+
+  {id:16,cat:"yoga",name:"Tapete de Yoga Elastomero",short:"Agarre superior en cualquier postura",
+   desc:"Tapete de yoga de elastomero termoplastico (TPE) con doble capa. Superior agarre, amortiguacion y durabilidad. Sin latex, ecologico.",
+   feats:["Material TPE ecologico sin latex","Doble capa antideslizante","6mm de espesor para articulaciones","Incluye correa de transporte"],
+   imgs:[B+"tapete_yoga_01.jpg",B+"tapete_yoga_02.jpg",B+"tapete_yoga_03.jpg"],
+   pNew:65000,pUsed:42000},
+
+  {id:17,cat:"yoga",name:"Colchoneta Plegable Compacta",short:"Para ejercicio en casa y viajes",
+   desc:"Colchoneta plegable de alta densidad para ejercicio en casa, pilates, abdominales y estiramientos. Se dobla y guarda facil.",
+   feats:["Plegable y compacta","Alta densidad de espuma","Superficie antideslizante","Facil de limpiar"],
+   imgs:[B+"colchoneta_01.jpg",B+"colchoneta_02.jpg"],
+   pNew:55000,pUsed:35000},
+
+  {id:18,cat:"yoga",name:"Ejercitador de Suelo Pelvico",short:"Fortalecimiento del suelo pelvico",
+   desc:"Ejercitador de suelo pelvico para fortalecer el core profundo, mejorar la postura y la salud pelvica. Para uso en casa.",
+   feats:["Diseno ergonomico","Material seguro y duradero","Para hombres y mujeres","Instrucciones de uso incluidas"],
+   imgs:[B+"ejercitador_pelvico_01.jpg",B+"ejercitador_pelvico_02.jpg"],
+   pNew:38000,pUsed:24000},
+
+  // ===== FUERZA =====
+  {id:19,cat:"fuerza",name:"Tabla para Flexiones",short:"Mayor rango de movimiento",
+   desc:"Tabla de push up que aumenta el rango de movimiento y activa mayor cantidad de fibras musculares. Multiples posiciones de agarre.",
+   feats:["Multiples posiciones de agarre","Mayor rango de movimiento","Base antideslizante","Material resistente"],
+   imgs:[B+"tabla_flexiones_01.jpg",B+"tabla_flexiones_02.jpg"],
+   pNew:45000,pUsed:29000},
+
+  {id:20,cat:"fuerza",name:"Soporte Push Up en S",short:"Ergonomia y mayor activacion",
+   desc:"Soporte para push up con forma en S que protege las munecas y aumenta la activacion muscular del pecho, hombros y triceps.",
+   feats:["Forma S ergonomica","Protege las munecas","Mayor activacion muscular","Base antideslizante con ventosas"],
+   imgs:[B+"push_up_01.jpg",B+"push_up_02.jpg",B+"push_up_03.jpg"],
+   pNew:38000,pUsed:24000},
+
+  {id:21,cat:"fuerza",name:"Soporte Push Up con Ventosas",short:"Fijacion al suelo total",
+   desc:"Soporte para push up con ventosas de fijacion al suelo para mayor estabilidad. Giro de 360 grados para activacion total del pecho.",
+   feats:["Ventosas de fijacion al suelo","Rotacion 360 grados","Mayor activacion pectoral","Agarre ergonomico"],
+   imgs:[B+"push_up_03.jpg",B+"push_up_04.jpg",B+"push_up_05.jpg"],
+   pNew:42000,pUsed:27000},
+
+  {id:22,cat:"fuerza",name:"Ejercitador de Muneca y Antebrazo",short:"Fuerza de agarre y antebrazo",
+   desc:"Ejercitador de muneca y antebrazo para mejorar la fuerza de agarre, rehabilitar lesiones y prevenir el sindrome del tunel carpiano.",
+   feats:["Resistencia ajustable","Para agarre y antebrazo","Rehabilitacion y prevencion","Compacto y portatil"],
+   imgs:[B+"ejercitador_muneca_01.jpg",B+"ejercitador_muneca_02.jpg"],
+   pNew:28000,pUsed:18000},
+
+  {id:23,cat:"fuerza",name:"Barra de Ejercicio Expandible",short:"Dominadas y press en casa",
+   desc:"Barra expandible para instalar en el marco de la puerta sin tornillos. Para dominadas, flexiones invertidas y abdominales colgados.",
+   feats:["Sin tornillos, sin dano en la puerta","Ajustable a diferentes anchos","Soporta hasta 150kg","Agarre antideslizante"],
+   imgs:[B+"barra_expandible_01.jpg",B+"barra_expandible_02.jpg"],
+   pNew:65000,pUsed:42000},
+
+  {id:24,cat:"fuerza",name:"Calleras",short:"Proteccion de manos en el gym",
+   desc:"Calleras de cuero o sintetico para proteger las manos en barras, dominadas y levantamiento de pesas. Evita ampollas y callos.",
+   feats:["Material resistente","Proteccion de manos completa","Ajuste con velcro","Para dominadas, barras y pesas"],
+   imgs:[B+"calleras_01.jpg",B+"calleras_02.jpg"],
+   pNew:32000,pUsed:20000},
+
+  // ===== PESO CORPORAL =====
+  {id:25,cat:"peso",name:"Chaleco de Peso 20kg",short:"Entrena con resistencia extra",
+   desc:"Chaleco de peso ajustable de hasta 20kg. Para entrenamiento con el propio peso corporal, dominadas, flexiones y cardio intenso.",
+   feats:["Capacidad hasta 20kg","Peso ajustable por bolsillos","Materiales transpirables","Talla ajustable con velcro"],
+   imgs:[B+"chaleco_peso_01.jpg",B+"chaleco_peso_02.jpg"],
+   pNew:185000,pUsed:120000},
+
+  {id:26,cat:"peso",name:"Tobilleras de Peso 5kg",short:"Resistencia extra en piernas",
+   desc:"Tobilleras de peso ajustables de hasta 5kg por unidad. Para gluteos, piernas y cardio. Se ajustan con velcro a cualquier talla.",
+   feats:["5kg por unidad","Ajuste con velcro","Para gluten y piernas","Material transpirable"],
+   imgs:[B+"tobilleras_peso_01.jpg",B+"tobilleras_peso_02.jpg"],
+   pNew:65000,pUsed:42000},
+
+  {id:27,cat:"peso",name:"Juego de Pesas 9kg",short:"Kit completo para empezar",
+   desc:"Juego de pesas de 9kg para entrenamiento en casa. Incluye soporte de almacenamiento. Ideal para tonificacion y fuerza.",
+   feats:["Set completo 9kg","Soporte de almacenamiento incluido","Recubrimiento de goma antideslizante","Ideal para principiantes"],
+   imgs:[B+"pesas_01.jpg",B+"pesas_02.jpg",B+"pesas_03.jpg"],
+   pNew:145000,pUsed:94000},
+
+  {id:28,cat:"peso",name:"Pesas 15kg",short:"Para nivel intermedio",
+   desc:"Set de pesas de 15kg total con recubrimiento de neopreno. Para entrenamiento de fuerza intermedio en casa o gym.",
+   feats:["15kg total","Recubrimiento neopreno","Agarre comodo","Superficie antideslizante"],
+   imgs:[B+"pesas_03.jpg",B+"pesas_04.jpg",B+"pesas_05.jpg"],
+   pNew:195000,pUsed:128000},
+
+  {id:29,cat:"peso",name:"Pesas 25kg",short:"Para nivel avanzado",
+   desc:"Set de pesas de 25kg total. Para entrenamiento de fuerza avanzado. Recubrimiento de goma para proteger el piso.",
+   feats:["25kg total","Recubrimiento de goma","Para nivel avanzado","Protege el piso"],
+   imgs:[B+"pesas_05.jpg",B+"pesas_06.jpg"],
+   pNew:285000,pUsed:185000},
+];
+
+let curFilter="all",curSearch="",mImgs=[],mIdx=0;
+function cop(n){return"$"+n.toLocaleString("es-CO")}
+
+function renderAll(){
+  const wrap=document.getElementById("catalogWrap");
+  wrap.innerHTML="";
+  let any=false;
+  SECTIONS.forEach(sec=>{
+    const prods=PRODUCTS.filter(p=>{
+      const cOk=curFilter==="all"||p.cat===sec.key;
+      const sOk=curSearch===""||p.name.toLowerCase().includes(curSearch)||p.short.toLowerCase().includes(curSearch);
+      return p.cat===sec.key&&cOk&&sOk;
+    });
+    if(!prods.length)return;
+    any=true;
+    const el=document.createElement("div");
+    el.innerHTML=`
+      <div class="sec-head">
+        <div class="sec-icon"><i class="${sec.icon}"></i></div>
+        <div class="sec-info"><div class="sec-name">${sec.name}</div><div class="sec-sub">${sec.sub}</div></div>
+        <div class="sec-count">${prods.length}</div>
+      </div>
+      <div class="products-grid" id="g${sec.key}"></div>
+    `;
+    wrap.appendChild(el);
+    const grid=el.querySelector(`#g${sec.key}`);
+    prods.forEach(p=>{
+      const card=document.createElement("div");
+      card.className="prod-card";
+      card.onclick=()=>openM(p);
+      const secName=sec.name.split(" ")[0];
+      const hasMultiple=p.imgs.length>1;
+      card.innerHTML=`
+        <div class="card-img-wrap">
+          <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy" onerror="this.style.opacity='.3'"/>
+          ${hasMultiple?`<div class="card-img-count"><i class="fas fa-images" style="font-size:10px"></i> ${p.imgs.length} fotos</div>`:''}
+          <div class="card-badge">${secName}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">${sec.name}</div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-short">${p.short}</div>
+          <div class="card-prices">
+            <div><div class="price-new-sm">${cop(p.pNew)}</div><div class="price-lbl">Nuevo</div></div>
+            <div><div class="price-used-sm">${cop(p.pUsed)}</div><div class="price-lbl">Usado</div></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-wa-sm" onclick="event.stopPropagation();askWA('${p.name}',${p.pNew},${p.pUsed})">
+            <i class="fab fa-whatsapp"></i> Preguntar
+          </button>
+          <button class="btn-expand" onclick="event.stopPropagation();openM(PRODUCTS.find(x=>x.id===${p.id}))">
+            <i class="fas fa-expand-alt"></i>
+          </button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  });
+  if(!any)wrap.innerHTML=`<div class="no-results"><i class="fas fa-search"></i><p>No se encontraron productos.</p></div>`;
+}
+
+function filterCat(cat,btn){
+  curFilter=cat;
+  document.querySelectorAll(".filt-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderAll();
+}
+function doSearch(){
+  curSearch=document.getElementById("searchInput").value.toLowerCase().trim();
+  renderAll();
+}
+function openM(p){
+  const secName=SECTIONS.find(s=>s.key===p.cat)?.name||p.cat;
+  document.getElementById("mCat").textContent=secName;
+  document.getElementById("mTitle").textContent=p.name;
+  document.getElementById("mDesc").textContent=p.desc;
+  document.getElementById("mFeats").innerHTML=p.feats.map(f=>`<div class="mfeat">${f}</div>`).join("");
+  document.getElementById("mPN").textContent=cop(p.pNew);
+  document.getElementById("mPU").textContent=cop(p.pUsed);
+  mImgs=p.imgs; mIdx=0;
+  buildMGall();
+  document.getElementById("mWaBtn").onclick=()=>askWA(p.name,p.pNew,p.pUsed);
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function buildMGall(){
+  const g=document.getElementById("mGall");
+  g.querySelectorAll("img").forEach(im=>im.remove());
+  mImgs.forEach((src,i)=>{
+    const im=document.createElement("img");
+    im.src=src; im.alt="Deportivo";
+    if(i===mIdx)im.classList.add("active");
+    im.onerror=()=>im.style.display="none";
+    g.insertBefore(im,g.firstChild);
+  });
+  if(mImgs.length>1){
+    document.getElementById("mGallNav").innerHTML=mImgs.map((_,i)=>`<button class="mgdot${i===mIdx?" active":""}" onclick="goMI(${i})"></button>`).join("");
+    document.getElementById("mCounter").textContent=(mIdx+1)+" / "+mImgs.length;
+    document.querySelector(".mg-prev").style.display="flex";
+    document.querySelector(".mg-next").style.display="flex";
+  } else {
+    document.getElementById("mGallNav").innerHTML="";
+    document.getElementById("mCounter").textContent="";
+    document.querySelector(".mg-prev").style.display="none";
+    document.querySelector(".mg-next").style.display="none";
+  }
+}
+function goMI(i){mIdx=i;buildMGall()}
+function mPrev(){goMI((mIdx-1+mImgs.length)%mImgs.length)}
+function mNext(){goMI((mIdx+1)%mImgs.length)}
+function closeM(){document.getElementById("modalOverlay").classList.remove("open");document.body.style.overflow=""}
+function closeMBg(e){if(e.target===document.getElementById("modalOverlay"))closeM()}
+function askWA(name,pN,pU){
+  const msg=`Hola! Me interesa: ${name} (Nuevo: ${cop(pN)} / Usado: ${cop(pU)}). Podrias darme mas informacion?`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeM()});
+renderAll();
+</script>
+</body>
+</html>
