@@ -191,7 +191,6 @@
   <p>2025 <span>Punto Clave</span> - Bogota, Colombia - 7 anos de confianza - +57 305 399 9346</p>
 </footer>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeMBg(event)">
   <div class="modal" id="modalBox">
     <button class="modal-close" onclick="closeM()"><i class="fas fa-times"></i></button>
@@ -235,186 +234,185 @@ const SECTIONS=[
 ];
 
 const PRODUCTS=[
-
   // ===== RUEDAS ABDOMINALES =====
   {id:1,cat:"ruedas",name:"Rueda Abdominal",short:"Ejercicio core en casa",
    desc:"Rueda abdominal clasica para trabajar el core, abdomen y lumbar. Con rodamiento de precision y agarres antideslizantes. Incluye rodillera.",
    feats:["Rodamiento de precision silencioso","Agarres antideslizantes","Incluye rodillera acolchada","Compatible con todo tipo de piso"],
-   imgs:[B+"rueda_abdominal_01.jpg",B+"rueda_abdominal_02.jpg",B+"rueda_abdominal_03.jpg",B+"rueda_abdominal_04.jpg"],
+   imgs:[B+"rueda_abdominal_1.jpg",B+"rueda_abdominal_2.jpg",B+"rueda_abdominal_3.jpg",B+"rueda_abdominal_4.jpg"],
    pNew:35000,pUsed:22000},
 
   {id:2,cat:"ruedas",name:"Roller Slide",short:"Deslizamiento para ejercicio de core",
    desc:"Discos deslizantes tipo slide para ejercicios de core, lunges y movimientos funcionales. Uso en pisos lisos y alfombras.",
    feats:["Doble cara: piso duro y alfombra","Bajo impacto para articulaciones","Ejercicios de core y tren inferior","Compactos y ligeros"],
-   imgs:[B+"roller_slide_01.jpg",B+"roller_slide_02.jpg"],
+   imgs:[B+"roller_slide_1.jpg",B+"roller_slide_2.jpg",B+"roller_slide_3.jpg",B+"roller_slide_4.jpg"],
    pNew:28000,pUsed:18000},
 
   {id:3,cat:"ruedas",name:"Rodillo Abdominal",short:"Control y fuerza de core avanzado",
    desc:"Rodillo abdominal con mecanismo de retorno automatico para principiantes. Fortalece abdomen, dorsales, hombros y brazos en un solo movimiento.",
    feats:["Mecanismo retorno automatico","Apto para principiantes","Fortalece multiples grupos musculares","Material resistente"],
-   imgs:[B+"rodillo_abdominal_01.jpg",B+"rodillo_abdominal_02.jpg",B+"rodillo_abdominal_03.jpg",B+"rodillo_abdominal_04.jpg"],
+   imgs:[B+"rodillo_abdominal_1.jpg",B+"rodillo_abdominal_2.jpg",B+"rodillo_abdominal_3.jpg",B+"rodillo_abdominal_4.jpg"],
    pNew:42000,pUsed:27000},
 
   {id:4,cat:"ruedas",name:"Rueda Abdominal Multifuncion",short:"3 ruedas para mayor estabilidad",
    desc:"Rueda abdominal de 3 llantas que ofrece mayor estabilidad y control durante el ejercicio. Ideal para usuarios intermedios y avanzados.",
    feats:["3 ruedas para mayor estabilidad","Rodamiento de alta resistencia","Agarre ergonomico","Incluye tapete de rodillas"],
-   imgs:[B+"rueda_multifuncion_01.jpg",B+"rueda_multifuncion_02.jpg",B+"rueda_multifuncion_03.jpg"],
+   imgs:[B+"rueda_multifuncion_1.jpg",B+"rueda_multifuncion_2.jpg",B+"rueda_multifuncion_3.jpg",B+"rueda_multifuncion_4.jpg"],
    pNew:48000,pUsed:30000},
 
   // ===== BANDAS =====
   {id:5,cat:"bandas",name:"Bandas de Resistencia con Pedales",short:"Ejercicio de brazos y piernas sentado",
    desc:"Bandas elasticas con pedales para ejercitar brazos, piernas y espalda desde casa. Ideal para rehabilitacion y activacion muscular suave.",
    feats:["Pedales antideslizantes","Ajuste de tension","Sin necesidad de suelo","Ideal para adultos mayores y rehab"],
-   imgs:[B+"bandas_resistencia_01.jpg",B+"bandas_resistencia_02.jpg",B+"bandas_resistencia_03.jpg"],
+   imgs:[B+"bandas_pedales_1.jpg",B+"bandas_pedales_2.jpg",B+"bandas_pedales_3.jpg",B+"bandas_pedales_4.jpg"],
    pNew:38000,pUsed:24000},
 
   {id:6,cat:"bandas",name:"Theraband Bandas Elasticas",short:"Fisioterapia y entrenamiento funcional",
    desc:"Bandas elasticas profesionales tipo Theraband para fisioterapia, pilates y entrenamiento funcional. Disponibles en diferentes niveles de resistencia.",
    feats:["Latex natural de alta calidad","Diferentes niveles de resistencia","Para fisioterapia y entrenamiento","Lavables y reutilizables"],
-   imgs:[B+"bandas_resistencia_04.jpg",B+"bandas_resistencia_05.jpg",B+"bandas_resistencia_06.jpg",B+"bandas_resistencia_07.jpg"],
+   imgs:[B+"theraband_1.jpg",B+"theraband_2.jpg",B+"theraband_3.jpg"],
    pNew:32000,pUsed:20000},
 
   {id:7,cat:"bandas",name:"Kit Barra Pilates con Bandas",short:"Entrenamiento completo cuerpo entero",
    desc:"Kit de barra pilates portatil con bandas elasticas integradas. Trabaja tren inferior, superior y core en un solo equipo portatil.",
    feats:["Barra ajustable","Bandas elasticas incluidas","Portatil y ligero","Ejercicios de cuerpo completo"],
-   imgs:[B+"kit_bandas_01.jpg",B+"kit_bandas_02.jpg",B+"kit_bandas_03.jpg"],
+   imgs:[B+"barra_pilates_1.jpg",B+"barra_pilates_2.jpg",B+"barra_pilates_3.jpg"],
    pNew:55000,pUsed:35000},
 
   {id:8,cat:"bandas",name:"Kit de Bandas Elasticas 5 Unidades",short:"5 niveles de resistencia en un kit",
    desc:"Set de 5 bandas de latex con diferentes niveles de resistencia. Incluye bolsa de transporte y manual de ejercicios.",
    feats:["5 bandas de diferente resistencia","Material latex de alta calidad","Bolsa de transporte incluida","Manual de ejercicios"],
-   imgs:[B+"kit_bandas_04.jpg",B+"kit_bandas_05.jpg",B+"kit_bandas_06.jpg"],
+   imgs:[B+"kit_bandas_5_1.jpg",B+"kit_bandas_5_2.jpg",B+"kit_bandas_5_3.jpg"],
    pNew:45000,pUsed:28000},
 
   {id:9,cat:"bandas",name:"Bandas de Resistencia",short:"Para entrenamiento funcional completo",
    desc:"Bandas de resistencia de latex para entrenamiento funcional, crossfit y rehabilitacion. Alta durabilidad y resistencia.",
    feats:["Alta durabilidad","Para crossfit y funcional","Multiples ejercicios posibles","No se desgastan facil"],
-   imgs:[B+"bandas_resistencia_08.jpg",B+"bandas_resistencia_09.jpg",B+"bandas_resistencia_10.jpg"],
+   imgs:[B+"bandas_resistencia_1.jpg",B+"bandas_resistencia_2.jpg",B+"bandas_resistencia_3.jpg"],
    pNew:28000,pUsed:18000},
 
   {id:10,cat:"bandas",name:"Bandas de Resistencia con Manijas",short:"Mayor comodidad en el entrenamiento",
    desc:"Bandas de resistencia con manijas acolchadas y anclaje para puerta. Ejercicios de polea para espalda, biceps y triceps.",
    feats:["Manijas acolchadas ergonomicas","Anclaje para puerta incluido","Ejercicios tipo polea","Resistencia ajustable"],
-   imgs:[B+"bandas_resistencia_11.jpg",B+"bandas_resistencia_12.jpg"],
+   imgs:[B+"bandas_manijas_1.jpg",B+"bandas_manijas_2.jpg",B+"bandas_manijas_3.jpg"],
    pNew:42000,pUsed:27000},
 
   // ===== CUERDAS =====
   {id:11,cat:"cuerdas",name:"Soga para Saltar con Rodaje Interno",short:"Cardio intenso y coordinacion",
    desc:"Soga para saltar profesional con rodaje interno de alta velocidad. Para boxeo, crossfit y cardio intenso. Cuerda de acero recubierta.",
    feats:["Rodaje interno de alta velocidad","Cuerda de acero recubierta","Mango ergonomico antideslizante","Ajuste de longitud"],
-   imgs:[B+"soga_saltar_01.jpg",B+"soga_saltar_02.jpg",B+"soga_saltar_03.jpg"],
+   imgs:[B+"soga_saltar_1.jpg",B+"soga_saltar_2.jpg",B+"soga_saltar_3.jpg"],
    pNew:35000,pUsed:22000},
 
   // ===== FOAM ROLLER =====
   {id:12,cat:"foam",name:"Foam Roller",short:"Liberacion miofascial y recuperacion",
    desc:"Rodillo de espuma de alta densidad para liberacion miofascial, recuperacion post-entrenamiento y masaje muscular. Ideal para fisioterapia y yoga.",
    feats:["Alta densidad EVA","Superficie texturizada para mayor efectividad","Alivia tension muscular","Para todos los grupos musculares"],
-   imgs:[B+"foam_roller_01.jpg",B+"foam_roller_02.jpg",B+"foam_roller_03.jpg",B+"foam_roller_04.jpg"],
+   imgs:[B+"foam_roller_1.jpg",B+"foam_roller_2.jpg",B+"foam_roller_3.jpg"],
    pNew:52000,pUsed:33000},
 
   {id:13,cat:"foam",name:"Rodillo de Masaje Miofascial",short:"Recuperacion muscular profunda",
    desc:"Rodillo de masaje con superficie rugosa para trabajar la liberacion miofascial de manera mas profunda. Ideal para piernas, espalda e IT band.",
    feats:["Superficie rugosa para mayor presion","Material EVA de alta densidad","Ligero y portatil","Para muslos, IT band y espalda"],
-   imgs:[B+"foam_roller_02.jpg",B+"foam_roller_03.jpg",B+"foam_roller_04.jpg"],
+   imgs:[B+"rodillo_masaje_1.jpg",B+"rodillo_masaje_2.jpg",B+"rodillo_masaje_3.jpg"],
    pNew:45000,pUsed:29000},
 
   // ===== YOGA / PILATES =====
   {id:14,cat:"yoga",name:"Cojin de Equilibrio Inestable",short:"Balance, terapia, gym, pilates y yoga",
    desc:"Cojin inflable inestable para mejorar el equilibrio, la propiocepcion y el core. Uso en fisioterapia, yoga, pilates y entrenamiento funcional.",
    feats:["Superficie inestable para mayor activacion","Inflable y ajustable","Para yoga, pilates y rehab","Resistente hasta 150kg"],
-   imgs:[B+"cojin_equilibrio_01.jpg",B+"cojin_equilibrio_02.jpg"],
+   imgs:[B+"cojin_equilibrio_1.jpg",B+"cojin_equilibrio_2.jpg",B+"cojin_equilibrio_3.jpg"],
    pNew:42000,pUsed:27000},
 
   {id:15,cat:"yoga",name:"Ladrillo de Yoga Pilates",short:"Soporte y profundidad en posturas",
    desc:"Bloque de yoga de espuma EVA de alta densidad para soporte en posturas, mayor profundidad y alineacion correcta en yoga y pilates.",
    feats:["Espuma EVA de alta densidad","3 alturas de uso","Superficie antideslizante","Ligero y duradero"],
-   imgs:[B+"ladrillo_yoga_01.jpg",B+"ladrillo_yoga_02.jpg"],
+   imgs:[B+"ladrillo_yoga_1.jpg",B+"ladrillo_yoga_2.jpg",B+"ladrillo_yoga_3.jpg"],
    pNew:28000,pUsed:18000},
 
   {id:16,cat:"yoga",name:"Tapete de Yoga Elastomero",short:"Agarre superior en cualquier postura",
    desc:"Tapete de yoga de elastomero termoplastico (TPE) con doble capa. Superior agarre, amortiguacion y durabilidad. Sin latex, ecologico.",
    feats:["Material TPE ecologico sin latex","Doble capa antideslizante","6mm de espesor para articulaciones","Incluye correa de transporte"],
-   imgs:[B+"tapete_yoga_01.jpg",B+"tapete_yoga_02.jpg",B+"tapete_yoga_03.jpg"],
+   imgs:[B+"tapete_yoga_1.jpg",B+"tapete_yoga_2.jpg",B+"tapete_yoga_3.jpg"],
    pNew:65000,pUsed:42000},
 
   {id:17,cat:"yoga",name:"Colchoneta Plegable Compacta",short:"Para ejercicio en casa y viajes",
    desc:"Colchoneta plegable de alta densidad para ejercicio en casa, pilates, abdominales y estiramientos. Se dobla y guarda facil.",
    feats:["Plegable y compacta","Alta densidad de espuma","Superficie antideslizante","Facil de limpiar"],
-   imgs:[B+"colchoneta_01.jpg",B+"colchoneta_02.jpg"],
+   imgs:[B+"colchoneta_1.jpg",B+"colchoneta_2.jpg",B+"colchoneta_3.jpg"],
    pNew:55000,pUsed:35000},
 
   {id:18,cat:"yoga",name:"Ejercitador de Suelo Pelvico",short:"Fortalecimiento del suelo pelvico",
    desc:"Ejercitador de suelo pelvico para fortalecer el core profundo, mejorar la postura y la salud pelvica. Para uso en casa.",
    feats:["Diseno ergonomico","Material seguro y duradero","Para hombres y mujeres","Instrucciones de uso incluidas"],
-   imgs:[B+"ejercitador_pelvico_01.jpg",B+"ejercitador_pelvico_02.jpg"],
+   imgs:[B+"ejercitador_pelvico_1.jpg",B+"ejercitador_pelvico_2.jpg",B+"ejercitador_pelvico_3.jpg"],
    pNew:38000,pUsed:24000},
 
   // ===== FUERZA =====
   {id:19,cat:"fuerza",name:"Tabla para Flexiones",short:"Mayor rango de movimiento",
    desc:"Tabla de push up que aumenta el rango de movimiento y activa mayor cantidad de fibras musculares. Multiples posiciones de agarre.",
    feats:["Multiples posiciones de agarre","Mayor rango de movimiento","Base antideslizante","Material resistente"],
-   imgs:[B+"tabla_flexiones_01.jpg",B+"tabla_flexiones_02.jpg"],
+   imgs:[B+"tabla_flexiones_1.jpg",B+"tabla_flexiones_2.jpg",B+"tabla_flexiones_3.jpg"],
    pNew:45000,pUsed:29000},
 
   {id:20,cat:"fuerza",name:"Soporte Push Up en S",short:"Ergonomia y mayor activacion",
    desc:"Soporte para push up con forma en S que protege las munecas y aumenta la activacion muscular del pecho, hombros y triceps.",
    feats:["Forma S ergonomica","Protege las munecas","Mayor activacion muscular","Base antideslizante con ventosas"],
-   imgs:[B+"push_up_01.jpg",B+"push_up_02.jpg",B+"push_up_03.jpg"],
+   imgs:[B+"push_up_s_1.jpg",B+"push_up_s_2.jpg",B+"push_up_s_3.jpg"],
    pNew:38000,pUsed:24000},
 
   {id:21,cat:"fuerza",name:"Soporte Push Up con Ventosas",short:"Fijacion al suelo total",
    desc:"Soporte para push up con ventosas de fijacion al suelo para mayor estabilidad. Giro de 360 grados para activacion total del pecho.",
    feats:["Ventosas de fijacion al suelo","Rotacion 360 grados","Mayor activacion pectoral","Agarre ergonomico"],
-   imgs:[B+"push_up_03.jpg",B+"push_up_04.jpg",B+"push_up_05.jpg"],
+   imgs:[B+"push_up_ventosas_1.jpg",B+"push_up_ventosas_2.jpg",B+"push_up_ventosas_3.jpg"],
    pNew:42000,pUsed:27000},
 
   {id:22,cat:"fuerza",name:"Ejercitador de Muneca y Antebrazo",short:"Fuerza de agarre y antebrazo",
    desc:"Ejercitador de muneca y antebrazo para mejorar la fuerza de agarre, rehabilitar lesiones y prevenir el sindrome del tunel carpiano.",
    feats:["Resistencia ajustable","Para agarre y antebrazo","Rehabilitacion y prevencion","Compacto y portatil"],
-   imgs:[B+"ejercitador_muneca_01.jpg",B+"ejercitador_muneca_02.jpg"],
+   imgs:[B+"ejercitador_muneca_1.jpg",B+"ejercitador_muneca_2.jpg",B+"ejercitador_muneca_3.jpg"],
    pNew:28000,pUsed:18000},
 
   {id:23,cat:"fuerza",name:"Barra de Ejercicio Expandible",short:"Dominadas y press en casa",
    desc:"Barra expandible para instalar en el marco de la puerta sin tornillos. Para dominadas, flexiones invertidas y abdominales colgados.",
    feats:["Sin tornillos, sin dano en la puerta","Ajustable a diferentes anchos","Soporta hasta 150kg","Agarre antideslizante"],
-   imgs:[B+"barra_expandible_01.jpg",B+"barra_expandible_02.jpg"],
+   imgs:[B+"barra_expandible_1.jpg",B+"barra_expandible_2.jpg",B+"barra_expandible_3.jpg"],
    pNew:65000,pUsed:42000},
 
   {id:24,cat:"fuerza",name:"Calleras",short:"Proteccion de manos en el gym",
    desc:"Calleras de cuero o sintetico para proteger las manos en barras, dominadas y levantamiento de pesas. Evita ampollas y callos.",
    feats:["Material resistente","Proteccion de manos completa","Ajuste con velcro","Para dominadas, barras y pesas"],
-   imgs:[B+"calleras_01.jpg",B+"calleras_02.jpg"],
+   imgs:[B+"calleras_1.jpg",B+"calleras_2.jpg",B+"calleras_3.jpg"],
    pNew:32000,pUsed:20000},
 
   // ===== PESO CORPORAL =====
   {id:25,cat:"peso",name:"Chaleco de Peso 20kg",short:"Entrena con resistencia extra",
    desc:"Chaleco de peso ajustable de hasta 20kg. Para entrenamiento con el propio peso corporal, dominadas, flexiones y cardio intenso.",
    feats:["Capacidad hasta 20kg","Peso ajustable por bolsillos","Materiales transpirables","Talla ajustable con velcro"],
-   imgs:[B+"chaleco_peso_01.jpg",B+"chaleco_peso_02.jpg"],
+   imgs:[B+"chaleco_peso_1.jpg",B+"chaleco_peso_2.jpg",B+"chaleco_peso_3.jpg"],
    pNew:185000,pUsed:120000},
 
   {id:26,cat:"peso",name:"Tobilleras de Peso 5kg",short:"Resistencia extra en piernas",
    desc:"Tobilleras de peso ajustables de hasta 5kg por unidad. Para gluteos, piernas y cardio. Se ajustan con velcro a cualquier talla.",
    feats:["5kg por unidad","Ajuste con velcro","Para gluten y piernas","Material transpirable"],
-   imgs:[B+"tobilleras_peso_01.jpg",B+"tobilleras_peso_02.jpg"],
+   imgs:[B+"tobilleras_peso_1.jpg",B+"tobilleras_peso_2.jpg",B+"tobilleras_peso_3.jpg"],
    pNew:65000,pUsed:42000},
 
   {id:27,cat:"peso",name:"Juego de Pesas 9kg",short:"Kit completo para empezar",
    desc:"Juego de pesas de 9kg para entrenamiento en casa. Incluye soporte de almacenamiento. Ideal para tonificacion y fuerza.",
    feats:["Set completo 9kg","Soporte de almacenamiento incluido","Recubrimiento de goma antideslizante","Ideal para principiantes"],
-   imgs:[B+"pesas_01.jpg",B+"pesas_02.jpg",B+"pesas_03.jpg"],
+   imgs:[B+"pesas_9kg_1.jpg",B+"pesas_9kg_2.jpg",B+"pesas_9kg_3.jpg"],
    pNew:145000,pUsed:94000},
 
   {id:28,cat:"peso",name:"Pesas 15kg",short:"Para nivel intermedio",
    desc:"Set de pesas de 15kg total con recubrimiento de neopreno. Para entrenamiento de fuerza intermedio en casa o gym.",
    feats:["15kg total","Recubrimiento neopreno","Agarre comodo","Superficie antideslizante"],
-   imgs:[B+"pesas_03.jpg",B+"pesas_04.jpg",B+"pesas_05.jpg"],
+   imgs:[B+"pesas_15kg_1.jpg",B+"pesas_15kg_2.jpg",B+"pesas_15kg_3.jpg"],
    pNew:195000,pUsed:128000},
 
   {id:29,cat:"peso",name:"Pesas 25kg",short:"Para nivel avanzado",
    desc:"Set de pesas de 25kg total. Para entrenamiento de fuerza avanzado. Recubrimiento de goma para proteger el piso.",
    feats:["25kg total","Recubrimiento de goma","Para nivel avanzado","Protege el piso"],
-   imgs:[B+"pesas_05.jpg",B+"pesas_06.jpg"],
+   imgs:[B+"pesas_25kg_1.jpg",B+"pesas_25kg_2.jpg",B+"pesas_25kg_3.jpg"],
    pNew:285000,pUsed:185000},
 ];
 
